@@ -1,0 +1,41 @@
+[
+  {
+    "id": "TEK-1",
+    "fname": "Alice",
+    "lname": "John",
+    "dept": "dev",
+    "dob": "25-10-2001",
+    "address": "Hyderabad",
+    "email": "alice123@tek.ac.in",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "role": [
+      "ADMIN"
+    ]
+  },
+  {
+    "id": "TEK-2",
+    "fname": "John",
+    "lname": "Marth",
+    "dept": "Dev",
+    "dob": "2-4-2002",
+    "address": "Bangalore",
+    "email": "john123@gmail.com",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "role": [
+      "MANAGER"
+    ]
+  },
+  {
+    "id": "TEK-3",
+    "fname": "Smith",
+    "lname": "Bob",
+    "dept": "QE",
+    "dob": "3-2-2001",
+    "address": "Chennai",
+    "email": "smith123@yahoo.com",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "role": [
+      "USER"
+    ]
+  }
+]
