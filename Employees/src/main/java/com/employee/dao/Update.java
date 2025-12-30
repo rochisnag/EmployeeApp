@@ -1,98 +1,91 @@
 package com.employee.dao;
 
+import java.io.IOException;
 import java.util.Scanner;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonElement;
-import com.employee.exceptions.EmployeeDoesNotExists;
-import com.employee.enums.UpdateChoice;
 import com.employee.dao.Json;
-import com.employee.dao.UpdateAddress;
-import com.employee.dao.UpdateDob;
-import com.employee.dao.UpdateName;
-import com.employee.dao.UpdateDept;
-import com.employee.dao.UpdateMail;
+import com.employee.dao.View;
+import com.employee.dto.LoginValid;
+import com.employee.exceptions.EmployeeDoesNotExists;
 
 public class Update {
 
-    public static void execute()  {
+	public static void execute() {
+		try {
+			Scanner sc = new Scanner(System.in);
+			JsonArray users = Json.loadUsers();
 
-        Scanner sc = new Scanner(System.in);
-        JsonArray users = Json.loadUsers(); // Load users using Gson
+			String id;
 
-        System.out.print("Enter Employee ID: ");
-        String id = sc.nextLine().trim();
+			if (LoginValid.role.equals("USER")) {
+				id = LoginValid.id;
+			} else {
+				System.out.print("Enter Employee ID: ");
+				id = sc.nextLine().trim();
+			}
 
-        JsonObject user = findUserById(users, id);
+			JsonObject user = findUserById(users, id);
+			if (user == null) {
+				throw new EmployeeDoesNotExists("Employee ID '" + id + "' does not exist.");
+			}
 
-        if (user == null) {
-            throw new EmployeeDoesNotExists("Employee ID '" + id + "' does not exist.");
-        }
+			System.out.println("\n--- UPDATE EMPLOYEE DETAILS ---");
 
-        System.out.println("\n--- UPDATE MENU ---");
-        for (UpdateChoice c : UpdateChoice.values()) {
-            System.out.println(c);
-        }
+			if (!LoginValid.role.equals("USER")) {
+				System.out.print("Enter First Name: ");
+				String fname = sc.nextLine().trim();
 
-        System.out.print("Enter your choice: ");
-        UpdateChoice choice;
+				System.out.print("Enter Last Name: ");
+				String lname = sc.nextLine().trim();
 
-        try {
-            choice = UpdateChoice.valueOf(sc.nextLine().trim().toUpperCase());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Invalid choice!");
-            return;
-        }
+				user.addProperty("fname", fname);
+				user.addProperty("lname", lname);
 
-        switch (choice) {
+				System.out.print("Enter Department: ");
+				String dept = sc.nextLine().trim();
+				user.addProperty("dept", dept);
+			}
 
-            case NAME:
-                UpdateName.updateName(user, sc);
-                break;
+			System.out.print("Enter Day of Birth: ");
+			String day = sc.nextLine().trim();
+			System.out.print("Enter Month of Birth: ");
+			String month = sc.nextLine().trim();
+			System.out.print("Enter Year of Birth: ");
+			String year = sc.nextLine().trim();
+			String dob = day + "-" + month + "-" + year;
+			user.addProperty("dob", dob);
 
-            case DOB:
-                UpdateDob.updateDob(user, sc);
-                break;
+			System.out.print("Enter Address: ");
+			String address = sc.nextLine().trim();
+			user.addProperty("address", address);
 
-            case DEPT:
-                UpdateDept.updateDept(user, sc);
-                break;
+			System.out.print("Enter Email: ");
+			String email = sc.nextLine().trim();
+			user.addProperty("email", email);
 
-            case MAIL:
-                UpdateMail.updateMail(user, sc);
-                break;
+			Json.saveUsers(users);
 
-            case ADDRESS:
-                UpdateAddress.updateAddress(user, sc);
-                break;
+			System.out.println("\nEmployee updated successfully!");
 
-            case ALL:
-                updateAll(user, sc);
-                break;
-        }
+			if (!LoginValid.role.equals("USER")) {
+				View.showAll();
+			} else {
+				View.showOne();
+			}
 
-        Json.saveUsers(users);
-        System.out.println("Update successful!");
-    }
+		} catch (Exception e) {
+			System.out.println("An unexpected error occurred: " + e.getMessage());
+		}
+	}
 
-  
-    private static JsonObject findUserById(JsonArray users, String id) {
-
-        for (JsonElement elem : users) {
-            JsonObject user = elem.getAsJsonObject();
-            if (user.get("id").getAsString().equals(id)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    // ================= UPDATE ALL FIELDS =================
-    private static void updateAll(JsonObject user, Scanner sc) {
-        UpdateName.updateName(user, sc);
-        UpdateDob.updateDob(user, sc);
-        UpdateDept.updateDept(user, sc);
-        UpdateMail.updateMail(user, sc);
-        UpdateAddress.updateAddress(user, sc);
-    }
+	private static JsonObject findUserById(JsonArray users, String id) {
+		for (int i = 0; i < users.size(); i++) {
+			JsonObject user = users.get(i).getAsJsonObject();
+			if (user.get("id").getAsString().equals(id)) {
+				return user;
+			}
+		}
+		return null;
+	}
 }
