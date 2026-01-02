@@ -1,9 +1,21 @@
 package com.employee.main;
 
-import com.employee.controller.Login;
+import com.employee.controller.MenuController;
 
 public class EmployeeManagement {
 	public static void main(String[] args) {
-		Login.login();
+
+		String filepath;
+
+		if (args.length > 0) {
+			filepath = args[0];
+		}
+
+		else {
+			filepath = "users.json";
+			System.out.println("No file path default" + filepath);
+		}
+
+		MenuController.displayMenu(filepath);
 	}
 }

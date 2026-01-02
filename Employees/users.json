@@ -1,0 +1,190 @@
+[
+  {
+    "fname": "Alice",
+    "lname": "John",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Hyderabad",
+    "role": [
+      "ADMIN"
+    ],
+    "dob": "25-10-2001",
+    "id": "TEK-1",
+    "dept": "Dev",
+    "email": "alice123@tek.ac.in"
+  },
+  {
+    "fname": "John",
+    "lname": "Marth",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Secundrabad",
+    "role": [
+      "MANAGER"
+    ],
+    "dob": "02-04-2002",
+    "id": "TEK-2",
+    "dept": "Dev",
+    "email": "john123@gmail.com"
+  },
+  {
+    "fname": "SURYI",
+    "lname": "REDDY",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "GURGAON",
+    "role": [
+      "USER",
+      "MANAGER"
+    ],
+    "dob": "3-2-2002",
+    "id": "TEK-4",
+    "dept": "MANGALORE",
+    "email": "suryi123@tek.ac.in"
+  },
+  {
+    "fname": "Sai",
+    "lname": "Kumar",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Chennai",
+    "role": [
+      "USER"
+    ],
+    "dob": "05-06-1999",
+    "id": "TEK-5",
+    "dept": "Support",
+    "email": "sai.kumar@gmail.com"
+  },
+  {
+    "fname": "Priya",
+    "lname": "Chowdary",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Pune",
+    "role": [
+      "MANAGER"
+    ],
+    "dob": "19-09-1996",
+    "id": "TEK-6",
+    "dept": "Dev",
+    "email": "priya.chowdary@tek.ac.in"
+  },
+  {
+    "fname": "Mani",
+    "lname": "Rao",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Mumbai",
+    "role": [
+      "USER",
+      "ADMIN"
+    ],
+    "dob": "07-07-2001",
+    "id": "TEK-7",
+    "dept": "QE",
+    "email": "mani.rao@yahoo.com"
+  },
+  {
+    "fname": "Divya",
+    "lname": "Prasad",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Kolkata",
+    "role": [
+      "USER",
+      "ADMIN"
+    ],
+    "dob": "28-02-1998",
+    "id": "TEK-8",
+    "dept": "DevOps",
+    "email": "divya.prasad@tek.ac.in"
+  },
+  {
+    "fname": "Vikram",
+    "lname": "Naik",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Hyderabad",
+    "role": [
+      "ADMIN"
+    ],
+    "dob": "14-11-1995",
+    "id": "TEK-9",
+    "dept": "Dev",
+    "email": "vikram.naik@gmail.com"
+  },
+  {
+    "fname": "",
+    "lname": "",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "CHENNAI",
+    "role": [
+      "USER"
+    ],
+    "dob": "2-3-2002",
+    "id": "TEK-10",
+    "dept": "DEV",
+    "email": "srinivas123@gmail.com"
+  },
+  {
+    "fname": "Latha",
+    "lname": "Chandra",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Bangalore",
+    "role": [
+      "MANAGER"
+    ],
+    "dob": "21-05-1997",
+    "id": "TEK-11",
+    "dept": "QE",
+    "email": "latha.chandra@yahoo.com"
+  },
+  {
+    "fname": "Kiran",
+    "lname": "Rao",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Pune",
+    "role": [
+      "USER",
+      "MANAGER"
+    ],
+    "dob": "12-03-1999",
+    "id": "TEK-12",
+    "dept": "DevOps",
+    "email": "kiran.rao@tek.ac.in"
+  },
+  {
+    "fname": "Manohar",
+    "lname": "Rao",
+    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
+    "address": "Chennai",
+    "role": [
+      "USER",
+      "ADMIN"
+    ],
+    "dob": "01-01-1998",
+    "id": "TEK-15",
+    "dept": "Support",
+    "email": "manohar.rao@yahoo.com"
+  },
+  {
+    "id": "TEK-16",
+    "fname": "MOU",
+    "lname": "R",
+    "dept": "DEV",
+    "dob": "2-1-2003",
+    "address": "hyderabad",
+    "email": "mounish23@tek.ac.in",
+    "password": "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
+    "role": [
+      "ADMIN",
+      "MANAGER"
+    ]
+  },
+  {
+    "id": "TEK-17",
+    "fname": "navya",
+    "lname": "g",
+    "dept": "hr",
+    "dob": "3-4-2001",
+    "address": "chennai",
+    "email": "navya123@gmail.com",
+    "password": "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
+    "role": [
+      "MANAGER"
+    ]
+  }
+]
