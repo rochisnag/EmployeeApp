@@ -21,21 +21,18 @@ public class EmployeeUtil {
 	public EmployeeUtil(String filepath) {
 		this.file = new File(filepath);
 	}
-
 	public boolean checkEmployee(String checkId) {
-
 		if (!file.exists() || file.length() == 0) {
 			return false;
 		}
-
 		try (FileReader reader = new FileReader(file)) {
 			JsonArray array = JsonParser.parseReader(reader).getAsJsonArray();
 
 			for (JsonElement el : array) {
 				JsonObject jsonObject = el.getAsJsonObject();
 				String id = jsonObject.get("id").getAsString();
-				if (id.equals(checkId)) {
-					return true;
+				if (id.trim().equalsIgnoreCase(checkId.trim())) {
+				    return true;
 				}
 			}
 		} catch (IOException e) {

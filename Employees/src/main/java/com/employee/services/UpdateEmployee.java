@@ -22,44 +22,34 @@ public class UpdateEmployee {
 	}
 
 	public void update() {
-
 		String id;
 		if (CheckLogin.role.equals("USER")) {
 			id = CheckLogin.id;
 		} else {
 			System.out.println("Enter emp id:");
-			id = sc.nextLine();
+			id = sc.nextLine().trim().toUpperCase();
 		}
-
 		boolean exists = util.checkEmployee(id);
 		if (!exists) {
-			System.out.println("Invalid employee id"); // ID not found
+			System.out.println("Invalid employee id");
 			return;
 		}
-
-		String fname;
-		String lname;
+		String name;
 		String dept;
-
 		Employee existing = dao.getEmployeeById(id);
-
 		if (CheckLogin.role.equals("USER")) {
-			fname = existing.getFname();
-			lname = existing.getLname();
+			name = existing.getName();
 			dept = existing.getDept();
 		}
-
 		else {
 			System.out.println("Enter emp first name:");
-			fname = sc.nextLine();
-
+			 String fname = sc.nextLine();
 			System.out.println("Enter emp last name:");
-			lname = sc.nextLine();
-
+			 String lname = sc.nextLine();	 
+			name = fname+" "+lname;
 			System.out.println("Enter emp dept:");
 			dept = sc.nextLine();
 		}
-
 		// Update DOB
 		System.out.println("Enter DOB - Day:");
 		String day = sc.nextLine();
@@ -71,23 +61,18 @@ public class UpdateEmployee {
 		String year = sc.nextLine();
 
 		String DOB = day + "-" + month + "-" + year;
-
 		// Update address
 		System.out.println("Enter employee address:");
 		String address = sc.nextLine();
-
 		// Update email
 		System.out.println("Enter employee email:");
 		String email = sc.nextLine();
-
-		dao.updateEmployee(id, fname, lname, dept, DOB, address, email);
-
+		dao.updateEmployee(id, name, dept, DOB, address, email);
 		if (!"USER".equals(CheckLogin.role)) {
 			getEmployee.get_all();
 		} else {
 			getEmployee.get_by_id();
 		}
-
 		System.out.println("Employee updated successfully");
 	}
 

@@ -25,10 +25,8 @@ public class PasswordOperations {
 		this.util = new EmployeeUtil(filepath);
 		this.getEmployee = new GetEmployee(filepath);
 	}
-
 	public void changePassword() {
 		String id = CheckLogin.id;
-
 		try {
 			System.out.println("Enter old password:");
 			String oldPassword = sc.nextLine();
@@ -43,34 +41,24 @@ public class PasswordOperations {
 				System.out.println("Passwords didn't match");
 				return;
 			}
-
 			String oldHash = util.hash(oldPassword);
 			String newHash = util.hash(newPassword);
-
-			dao.changePassword(id, oldHash, newHash);
-
+			dao.changePassword(id.toUpperCase(), oldHash, newHash);
 			System.out.println("Password changed successfully");
-
 		} catch (InvalidIdException e) {
 			System.out.println(e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Error");
 		}
-
 	}
-
 	public void resetPassword() {
 		try {
-			
-		
 		System.out.print("Enter employee ID to reset password:");
-		String id = sc.nextLine();
-		
-
-		boolean exists = util.checkEmployee(id);
+		String id = sc.nextLine();	
+		boolean exists = util.checkEmployee(id.toUpperCase());
 		if (exists) {
 			String hashPassword = util.hash(defaultpass);
-			dao.resetPassword(id, hashPassword);
+			dao.resetPassword(id.toUpperCase(), hashPassword);
 			System.out.println("Password reset successfully to default:" + defaultpass);
 		} else {
 			throw new EmployeeDoesNotExists("Employee doesnot exist");

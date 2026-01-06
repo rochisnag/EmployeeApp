@@ -1,7 +1,6 @@
 [
   {
-    "fname": "Alice",
-    "lname": "John",
+    "name": "Alice John",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
     "address": "Hyderabad",
     "role": [
@@ -13,21 +12,19 @@
     "email": "alice123@tek.ac.in"
   },
   {
-    "fname": "John",
-    "lname": "Marth",
+    "name": "venkat ram",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
-    "address": "Secundrabad",
+    "address": "Kerala",
     "role": [
       "MANAGER"
     ],
-    "dob": "02-04-2002",
+    "dob": "2-6-1998",
     "id": "TEK-2",
-    "dept": "Dev",
-    "email": "john123@gmail.com"
+    "dept": "finance",
+    "email": "venkat123@gmail.com"
   },
   {
-    "fname": "SURYI",
-    "lname": "REDDY",
+    "name": "SURYI REDDY",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
     "address": "GURGAON",
     "role": [
@@ -40,21 +37,19 @@
     "email": "suryi123@tek.ac.in"
   },
   {
-    "fname": "Sai",
-    "lname": "Kumar",
+    "name": "Sai Kumar",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
-    "address": "Chennai",
+    "address": "Mumbai",
     "role": [
       "USER"
     ],
-    "dob": "05-06-1999",
+    "dob": "2-7-1998",
     "id": "TEK-5",
     "dept": "Support",
-    "email": "sai.kumar@gmail.com"
+    "email": "sai123@gmail.com"
   },
   {
-    "fname": "Priya",
-    "lname": "Chowdary",
+    "name": "Priya Chowdary",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
     "address": "Pune",
     "role": [
@@ -66,8 +61,7 @@
     "email": "priya.chowdary@tek.ac.in"
   },
   {
-    "fname": "Mani",
-    "lname": "Rao",
+    "name": "Mani Rao",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
     "address": "Mumbai",
     "role": [
@@ -80,8 +74,7 @@
     "email": "mani.rao@yahoo.com"
   },
   {
-    "fname": "Divya",
-    "lname": "Prasad",
+    "name": "Divya Prasad",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
     "address": "Kolkata",
     "role": [
@@ -94,8 +87,7 @@
     "email": "divya.prasad@tek.ac.in"
   },
   {
-    "fname": "Vikram",
-    "lname": "Naik",
+    "name": "Vikram Naik",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
     "address": "Hyderabad",
     "role": [
@@ -107,21 +99,7 @@
     "email": "vikram.naik@gmail.com"
   },
   {
-    "fname": "",
-    "lname": "",
-    "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
-    "address": "CHENNAI",
-    "role": [
-      "USER"
-    ],
-    "dob": "2-3-2002",
-    "id": "TEK-10",
-    "dept": "DEV",
-    "email": "srinivas123@gmail.com"
-  },
-  {
-    "fname": "Latha",
-    "lname": "Chandra",
+    "name": "Latha Chandra",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
     "address": "Bangalore",
     "role": [
@@ -133,8 +111,7 @@
     "email": "latha.chandra@yahoo.com"
   },
   {
-    "fname": "Kiran",
-    "lname": "Rao",
+    "name": "Kiran Rao",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
     "address": "Pune",
     "role": [
@@ -147,8 +124,7 @@
     "email": "kiran.rao@tek.ac.in"
   },
   {
-    "fname": "Manohar",
-    "lname": "Rao",
+    "name": "Manohar Rao",
     "password": "3f42999f1f444625f2e58639ae0c09d45cf6f9b2422002c662aa4c63e2141ff4",
     "address": "Chennai",
     "role": [
@@ -161,13 +137,12 @@
     "email": "manohar.rao@yahoo.com"
   },
   {
+    "name": "sai kumar",
     "id": "TEK-16",
-    "fname": "MOU",
-    "lname": "R",
-    "dept": "DEV",
-    "dob": "2-1-2003",
-    "address": "hyderabad",
-    "email": "mounish23@tek.ac.in",
+    "dept": "developer",
+    "dob": "2-3-1999",
+    "address": "Kolkata",
+    "email": "sai.kumar@tek.ac.in",
     "password": "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
     "role": [
       "ADMIN",
@@ -176,15 +151,15 @@
   },
   {
     "id": "TEK-17",
-    "fname": "navya",
-    "lname": "g",
-    "dept": "hr",
-    "dob": "3-4-2001",
-    "address": "chennai",
-    "email": "navya123@gmail.com",
+    "name": "Ashok Kumar",
+    "dept": "testing",
+    "dob": "2-7-1997",
+    "address": "Delhi",
+    "email": "ashok.kumar@tek.ac.in",
     "password": "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
     "role": [
-      "MANAGER"
+      "ADMIN",
+      "USER"
     ]
   }
 ]

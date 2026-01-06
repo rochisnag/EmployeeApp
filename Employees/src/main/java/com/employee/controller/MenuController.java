@@ -13,37 +13,28 @@ import com.employee.services.PasswordOperations;
 import com.employee.services.UpdateEmployee;
 
 public class MenuController {
-
 	public static void displayMenu(String filepath) {
-
 		LoginController login = new LoginController();
-
 		if (!login.loginCheck(filepath))
 			return;
-
 		GetEmployee readEmployees = new GetEmployee(filepath);
 		DeleteEmployee deleteEmployees = new DeleteEmployee(filepath);
 		UpdateEmployee updateEmployees = new UpdateEmployee(filepath);
 		PasswordOperations passwordOperations = new PasswordOperations(filepath);
 		AddEmployee addEmployee = new AddEmployee(filepath);
 		ChangeRole changeRole = new ChangeRole(filepath);
-
 		Scanner sc = new Scanner(System.in);
 		boolean exit = false;
 		String role = CheckLogin.role;
-
 		System.out.println("\nEMPLOYEE MANAGEMENT SYSTEM\n");
-
 		while (!exit) {
 			if ("ADMIN".equalsIgnoreCase(role)) {
 				System.out.println("ADMIN OPERATIONS\n");
 				for (AdminChoices c : AdminChoices.values())
 					System.out.println(c);
-
 				try {
 					System.out.println("\nType your Choice: ");
 					AdminChoices choice = AdminChoices.valueOf(sc.nextLine().toUpperCase());
-
 					switch (choice) {
 					case ADD:
 						addEmployee.insert(filepath);
@@ -76,16 +67,13 @@ public class MenuController {
 				} catch (IllegalArgumentException e) {
 					System.out.println("Invalid choice");
 				}
-
 			} else if ("MANAGER".equalsIgnoreCase(role)) {
 				System.out.println("MANAGER OPERATIONS\n");
 				for (ManagerChoices c : ManagerChoices.values())
 					System.out.println(c);
-
 				try {
 					System.out.println("\nType your Choice: ");
 					ManagerChoices choice = ManagerChoices.valueOf(sc.nextLine().toUpperCase());
-
 					switch (choice) {
 					case VIEW:
 						readEmployees.get_all();
@@ -95,6 +83,9 @@ public class MenuController {
 						break;
 					case VIEW_BY_ID:
 						readEmployees.get_by_id();
+						break;
+					case CHANGE_PASSWORD:
+						passwordOperations.changePassword();
 						break;
 					case EXIT:
 						exit = true;
@@ -108,7 +99,6 @@ public class MenuController {
 				System.out.println("USER OPERATIONS\n");
 				for (UserChoices c : UserChoices.values())
 					System.out.println(c);
-
 				try {
 					System.out.println("\nType your Choice: ");
 					UserChoices choice = UserChoices.valueOf(sc.nextLine().toUpperCase());

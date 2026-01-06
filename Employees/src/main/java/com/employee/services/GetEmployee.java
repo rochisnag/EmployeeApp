@@ -20,9 +20,7 @@ public class GetEmployee {
 		this.dao = new EmployeeDaoImpl(filepath);
 		this.util = new EmployeeUtil(filepath);
 	}
-
 	public void get_all() {
-
 		if (!file.exists() || file.length() <= 2) {
 			System.out.println("No employee login");
 			System.out.println();
@@ -30,9 +28,7 @@ public class GetEmployee {
 		}
 		dao.viewEmployee();
 	}
-
 	public void get_by_id() {
-
 		try {
 			String id;
 
@@ -42,18 +38,13 @@ public class GetEmployee {
 				System.out.print("Enter emp id:");
 				id = sc.next();
 			}
-
-			boolean present = util.checkEmployee(id);
-
+			boolean present = util.checkEmployee(id.toUpperCase());
 			if (!present) {
 				throw new EmployeeDoesNotExists("Employee doesnot  exist");
 			}
-
-			dao.viewEmployee_by_id(id);
-
+			dao.viewEmployee_by_id(id.toUpperCase());
 		} catch (EmployeeDoesNotExists e) {
 			System.out.println(e.getMessage());
-
 		} catch (Exception e) {
 			System.out.println("Error:" + e.getMessage());
 		}
