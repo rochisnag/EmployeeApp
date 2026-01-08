@@ -1,14 +1,12 @@
 package com.employee.controller;
-
 import java.util.Scanner;
 import com.employee.exceptions.InvalidIdException;
 import com.employee.exceptions.LoginFailedException;
-import com.employee.services.CheckLogin;
-
+import com.employee.daoFile.ServerSideValidations;
 public class LoginController {
-	public boolean loginCheck(String filepath) {
+	public boolean loginCheck() {
 		Scanner sc = new Scanner(System.in);
-		CheckLogin login = new CheckLogin(filepath);
+		ServerSideValidations se = new ServerSideValidations();
 		System.out.print("Employee Management System");
 		while (true) {
 			try {
@@ -20,7 +18,7 @@ public class LoginController {
 				}
 				System.out.print("Enter Password to login: ");
 				String password = sc.nextLine();
-				if (!login.validateLogin(id, password)) {
+				if (!se.validateLogin(id, password)) {
 					throw new LoginFailedException("Invalid credentials");
 				}
 				System.out.println("Login successful!");

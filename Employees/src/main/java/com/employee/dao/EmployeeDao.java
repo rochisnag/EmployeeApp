@@ -1,7 +1,7 @@
 package com.employee.dao;
-
-import com.google.gson.JsonArray;
+import java.util.List;
 import com.employee.model.Employee;
+import com.google.gson.JsonArray;
 
 public interface EmployeeDao {
 	void addEmployee(String name, String dept, String DOB, String address, String email, JsonArray rolesArray,
@@ -14,5 +14,4 @@ public interface EmployeeDao {
 	void resetPassword(String id, String password);
 	void grantRole(String id, String role);
 	void revokeRole(String id, String role);
-	Employee getEmployeeById(String id);
 }

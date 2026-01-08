@@ -1,29 +1,20 @@
 package com.employee.services;
-
 import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
-import com.employee.dao.EmployeeDaoImpl;
+import com.employee.daoFile.EmployeeDaoImpl;
+import com.employee.daoFile.ServerSideValidations;
 import com.employee.exceptions.EmployeeDoesNotExists;
-import com.employee.util.EmployeeUtil;
 
 public class DeleteEmployee {
-	private final EmployeeDao dao;
-	private final String filepath;
+	EmployeeDao dao = new EmployeeDaoImpl();
+	ServerSideValidations se = new ServerSideValidations();
 	private final Scanner sc = new Scanner(System.in);
-	
-	public DeleteEmployee(String filepath) {
-		this.filepath = filepath;
-		this.dao = new EmployeeDaoImpl(filepath);
-	}
 	public void delete() {
-		EmployeeUtil util = new EmployeeUtil(filepath);
-		GetEmployee getEmployee = new GetEmployee(filepath);
+		GetEmployee getEmployee = new GetEmployee();
 		try {
 			System.out.println("Enter empId to delete: ");
 			String inputId = sc.nextLine();
-
-			boolean present = util.checkEmployee(inputId.toUpperCase());
-
+			boolean present = se.checkEmpExists(inputId.toUpperCase());
 			if (!present) {
 				throw new EmployeeDoesNotExists("Employee doesnot exist");
 			}

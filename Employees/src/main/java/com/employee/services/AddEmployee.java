@@ -1,28 +1,18 @@
 package com.employee.services;
-
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
-import org.json.simple.parser.ParseException;
 import com.google.gson.JsonArray;
 import com.employee.dao.EmployeeDao;
-import com.employee.dao.EmployeeDaoImpl;
+import com.employee.daoFile.EmployeeDaoImpl;
 import com.employee.model.Employee;
 import com.employee.util.EmployeeUtil;
-
 public class AddEmployee {
 	Employee employee = new Employee();
 	private final Scanner sc = new Scanner(System.in);
-	private final EmployeeDao dao;
-	private final EmployeeUtil util;
-	private final GetEmployee getEmployee;
-	public AddEmployee(String filepath) {
-		this.dao = new EmployeeDaoImpl(filepath);
-		this.util = new EmployeeUtil(filepath);
-		this.getEmployee = new GetEmployee(filepath);
-	}
-	public void insert(String filepath) {
+    EmployeeDao dao = new EmployeeDaoImpl();
+	EmployeeUtil util = new EmployeeUtil();
+    GetEmployee getEmployee = new GetEmployee();
+	public void insert() {
+		try {
 		System.out.println("Enter emp first name:");
 		String fname = sc.nextLine();
 
@@ -68,5 +58,8 @@ public class AddEmployee {
 		String hashPassword = util.hash(password);
 		dao.addEmployee(name, dept, DOB, address, email, rolesArray, hashPassword);
 		getEmployee.get_all();
+		}catch(IllegalArgumentException e) {
+			System.out.println("Invalid inputs: " +e.getMessage());
+		}
 	}
 }

@@ -1,9 +1,7 @@
-package com.employee.dao;
-
+package com.employee.daoFile;
 import com.employee.util.EmployeeUtil;
+import com.employee.dao.EmployeeDao;
 import com.employee.exceptions.InvalidIdException;
-import com.employee.services.CheckLogin;
-import com.employee.model.Employee;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,14 +16,10 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 
 public class EmployeeDaoImpl implements EmployeeDao {
-
-	private final File file;
-	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	private final EmployeeUtil util;
-	public EmployeeDaoImpl(String filepath) {
-		this.file = new File(filepath);
-		this.util = new EmployeeUtil(filepath);
-	}
+	public static final File file = new File("src/main/resources/users.json");
+	 public final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	 EmployeeUtil util = new EmployeeUtil();
+	 ServerSideValidations se = new ServerSideValidations();
 	private JsonArray getDataFromFile() {
 		if (!file.exists() || file.length() == 0) {
 			return new JsonArray();
@@ -47,7 +41,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			JsonArray rolesArray, String hashPassword) {
 		JsonArray employees = getDataFromFile();
 		JsonObject emp = new JsonObject();
-		emp.addProperty("id", util.generateId());
+		emp.addProperty("id", se.generateAutoId());
 		emp.addProperty("name", name);
 		emp.addProperty("dept", dept);
 		emp.addProperty("dob", dob);
@@ -65,11 +59,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		for (JsonElement el : employees) {
 			JsonObject emp = el.getAsJsonObject();
 			if (emp.get("id").getAsString().equalsIgnoreCase(id)) {			
-				emp.addProperty("name", name);
 				emp.addProperty("dob", dob);
 				emp.addProperty("address", address);
 				emp.addProperty("email", email);
-				if (!"USER".equals(CheckLogin.role)) {
+				if (!"USER".equals(ServerSideValidations.role)) {
+					emp.addProperty("name", name);
 					emp.addProperty("dept", dept);
 				}
 				break;
@@ -166,23 +160,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			throw new RuntimeException("Employee ID does not exist");
 		}
 		saveToFile(employees);
-	}
-	public Employee getEmployeeById(String id) {
-		JsonArray employees = getDataFromFile();
-		for (JsonElement el : employees) {
-			JsonObject emp = el.getAsJsonObject();
-			if (emp.get("id").getAsString().equalsIgnoreCase(id)) {
-				Employee employee = new Employee();
-				employee.setId(emp.get("id").getAsString());
-				employee.setName(emp.get("name").getAsString());
-				employee.setDept(emp.get("dept").getAsString());
-				employee.setDob(emp.get("dob").getAsString());
-				employee.setAddress(emp.get("address").getAsString());
-				employee.setEmail(emp.get("email").getAsString());
-				return employee;
-			}
-		}
-		return null;
 	}
 	private void printEmployee(JsonObject emp) {
 		System.out.println("----------------------");

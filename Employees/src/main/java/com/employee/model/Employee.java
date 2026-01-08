@@ -1,8 +1,6 @@
 package com.employee.model;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.google.gson.JsonArray;
 import com.employee.util.Roles;
 
 public class Employee {
@@ -42,7 +40,6 @@ public class Employee {
 		if (name == null || name.trim().isEmpty()) {
 			throw new IllegalArgumentException("Name cannot be null or empty");
 		}
-
 		this.name = name.trim();
 	}
 	public void setId(String id) {
