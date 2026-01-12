@@ -17,7 +17,7 @@ public class ServerSideValidations {
     public static String id;
     public  boolean validateLogin(String inputId, String password) {
     	 EmployeeUtil util = new EmployeeUtil();
-    		 Gson gson = new Gson();
+    	 Gson gson = new Gson();
     	  EmployeeDaoImpl daoImp = new EmployeeDaoImpl();
         if (!EmployeeDaoImpl.file.exists() || EmployeeDaoImpl.file.length() == 0) {
             System.out.println("No employee records found");

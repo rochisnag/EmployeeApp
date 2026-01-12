@@ -1,5 +1,4 @@
 package com.employee.services;
-
 import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
 import com.employee.daoFile.EmployeeDaoImpl;
@@ -8,12 +7,12 @@ import com.employee.model.Employee;
 import com.employee.util.EmployeeUtil;
 
 public class UpdateEmployee {
-	 EmployeeDao dao = new EmployeeDaoImpl();
+    EmployeeDao dao = new EmployeeDaoImpl();
 	EmployeeUtil util = new EmployeeUtil();
 	GetEmployee getEmployee = new GetEmployee();
 	private final Scanner sc = new Scanner(System.in);
 	ServerSideValidations se = new ServerSideValidations();
-	Employee emp = new Employee();
+	Employee employee = new Employee();
 	public void update() {
 		String id;
 		if (ServerSideValidations.role.equals("USER")) {
@@ -36,10 +35,10 @@ public class UpdateEmployee {
 			System.out.println("Enter emp last name:");
 			 String lname = sc.nextLine();	 
 			name = fname+" "+lname;
-			emp.setName(name);
+			employee.setName(name);
 			System.out.println("Enter emp dept:");
 			dept = sc.nextLine();
-			emp.setDept(dept);
+			employee.setDept(dept);
 		}
 		System.out.println("Enter DOB - Day:");
 		String day = sc.nextLine();
@@ -48,14 +47,14 @@ public class UpdateEmployee {
 		System.out.println("Enter DOB - Year:");
 		String year = sc.nextLine();
 		String DOB = day + "-" + month + "-" + year;
-	     emp.setDob(DOB);
+	     employee.setDob(DOB);
 		System.out.println("Enter employee address:");
 		String address = sc.nextLine();
-		 emp.setAddress(address);
+		 employee.setAddress(address);
 		System.out.println("Enter employee email:");
 		String email = sc.nextLine();
-		emp.setEmail(email);
-		dao.updateEmployee(id, name, dept, DOB, address, email);
+		employee.setEmail(email);
+		dao.updateEmployee(id, name, dept, DOB, address, email);	
 		if (!"USER".equals(ServerSideValidations.role)) {
 			getEmployee.get_all();
 		} else {

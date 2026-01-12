@@ -18,8 +18,7 @@ public class PasswordOperations {
 		String id = ServerSideValidations.id;
 		try {
 			System.out.println("Enter old password:");
-			String oldPassword = sc.nextLine();
-			
+			String oldPassword = sc.nextLine();	
 			System.out.println("Enter new password:");
 			String newPassword = sc.nextLine();
 			System.out.println("Re-enter new password:");

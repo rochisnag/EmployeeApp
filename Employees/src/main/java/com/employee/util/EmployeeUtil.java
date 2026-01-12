@@ -1,10 +1,7 @@
 package com.employee.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import com.employee.model.Employee;
-
 public class EmployeeUtil {
-	Employee employee = new Employee();
 	public String hash(String password) {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
