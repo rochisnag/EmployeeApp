@@ -1,12 +1,11 @@
 package com.employee.dao;
+import com.employee.model.LoginResult;
+import com.employee.util.Roles;
 import java.util.List;
-import com.employee.model.Employee;
-import com.google.gson.JsonArray;
-
 public interface EmployeeDao {
-	void addEmployee(String name, String dept, String DOB, String address, String email, JsonArray rolesArray,
+	void addEmployee(String name, String dept, String DOB, String address, String email, List<Roles> rolesArray,
 			String hashPassword);
-	void updateEmployee(String id, String name, String dept, String DOB, String address, String email);
+	void updateEmployee(String id, String name, String dept, String DOB, String address, String email,Roles role);
 	void deleteEmployee(String id);
 	void viewEmployee();
 	void viewEmployee_by_id(String id);
@@ -14,4 +13,5 @@ public interface EmployeeDao {
 	void resetPassword(String id, String password);
 	void grantRole(String id, String role);
 	void revokeRole(String id, String role);
+	LoginResult validateUser(String id,String password);
 }

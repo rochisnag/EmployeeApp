@@ -1,17 +1,19 @@
 package com.employee.services;
 import java.util.Scanner;
-import com.google.gson.JsonArray;
 import com.employee.dao.EmployeeDao;
-import com.employee.daoFile.EmployeeDaoImpl;
+import com.employee.dao.EmployeeFileDaoImpl;
 import com.employee.model.Employee;
 import com.employee.util.EmployeeUtil;
+import com.employee.util.Roles;
+import java.util.List;
+import java.util.ArrayList;
 public class AddEmployee {
 	Employee employee = new Employee();
 	private final Scanner sc = new Scanner(System.in);
-    EmployeeDao dao = new EmployeeDaoImpl();
+  
 	EmployeeUtil util = new EmployeeUtil();
     GetEmployee getEmployee = new GetEmployee();
-	public void insert() {
+	public void insert(EmployeeDao emp) {
 		try {
 		System.out.println("Enter emp first name:");
 		String fname = sc.nextLine();
@@ -35,7 +37,7 @@ public class AddEmployee {
 		System.out.println("Enter emp year in DOB:");
 		String year = sc.nextLine();
 
-		String DOB = day + "-" + month + "-" + year;
+		String DOB = year + "-" + month + "-" +day;
 		employee.setDob(DOB);
 
 		System.out.println("Enter emp address:");
@@ -45,21 +47,26 @@ public class AddEmployee {
 		System.out.println("Enter emp email:");
 		String email = sc.nextLine();
 		employee.setEmail(email);
-
+		
 		System.out.println("Enter emp role with , seperated :");
-		String roleInput = sc.nextLine();
-
-		JsonArray rolesArray = new JsonArray();
-		for (String r : roleInput.split(",")) {
-			rolesArray.add(r.trim().toUpperCase());
+		System.out.println("Available Roles:");
+		for (Roles role : Roles.values()) {
+			System.out.println(role);
 		}
+		String roleInput = sc.nextLine();
+       List<Roles> rolesArray = new ArrayList<>();
+      
+       for (String role : roleInput.split(",")) {
+			rolesArray.add(Roles.valueOf(role.trim().toUpperCase()));
+		}  
 		String password = PasswordOperations.defaultpass;
 		employee.setPassword(password);
 		String hashPassword = util.hash(password);
-		dao.addEmployee(name, dept, DOB, address, email, rolesArray, hashPassword);
-		getEmployee.get_all();
+		emp.addEmployee(name, dept, DOB, address, email, rolesArray, hashPassword);
+		getEmployee.get_all(emp);
 		}catch(IllegalArgumentException e) {
 			System.out.println("Invalid inputs: " +e.getMessage());
+			 e.printStackTrace();
 		}
 	}
 }

@@ -57,13 +57,13 @@ public class Employee {
 		this.dept = dept;
 	}
 	public void setDob(String dob) {
-		if (dob == null || !dob.matches("\\d{1,2}-\\d{1,2}-\\d{4}")) {
+		if (dob == null || !dob.matches("\\d{4}-\\d{1,2}-\\d{1,2}")) {
 			throw new IllegalArgumentException("Invalid DOB format. Expected: DD-MM-YYYY");
 		}
 		String[] parts = dob.split("-");
-		int date = Integer.parseInt(parts[0]);
+		int date = Integer.parseInt(parts[2]);
 		int month = Integer.parseInt(parts[1]);
-		int year = Integer.parseInt(parts[2]);
+		int year = Integer.parseInt(parts[0]);
 		if (year < 1970 || year > 2007 || month < 1 || month > 12) {
 			throw new IllegalArgumentException("Invalid dates");
 		}

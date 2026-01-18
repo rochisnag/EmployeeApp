@@ -1,12 +1,15 @@
-package com.employee.daoFile;
+package com.employee.dao;
 import com.employee.util.EmployeeUtil;
-import com.employee.dao.EmployeeDao;
 import com.employee.exceptions.InvalidIdException;
+import com.employee.model.LoginResult;
+import com.employee.util.Roles;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -15,11 +18,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 
-public class EmployeeDaoImpl implements EmployeeDao {
+public class EmployeeFileDaoImpl implements EmployeeDao {
 	public static final File file = new File("src/main/resources/users.json");
-	 public final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	 EmployeeUtil util = new EmployeeUtil();
-	 ServerSideValidations se = new ServerSideValidations();
+	public final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	EmployeeUtil util = new EmployeeUtil();
+	ServerSideValidations se = new ServerSideValidations();
+
 	private JsonArray getDataFromFile() {
 		if (!file.exists() || file.length() == 0) {
 			return new JsonArray();
@@ -30,6 +34,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			return new JsonArray();
 		}
 	}
+
 	private void saveToFile(JsonArray array) {
 		try (FileWriter writer = new FileWriter(file)) {
 			gson.toJson(array, writer);
@@ -37,8 +42,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			System.out.println("Unable to save file");
 		}
 	}
-	public void addEmployee(String name, String dept, String dob, String address, String email,
-			JsonArray rolesArray, String hashPassword) {
+
+	public void addEmployee(String name, String dept, String dob, String address, String email, List<Roles>rolesArray,
+			String hashPassword) {
 		JsonArray employees = getDataFromFile();
 		JsonObject emp = new JsonObject();
 		emp.addProperty("id", se.generateAutoId());
@@ -48,21 +54,22 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		emp.addProperty("address", address);
 		emp.addProperty("email", email);
 		emp.addProperty("password", hashPassword);
-		emp.add("role", rolesArray);
+		JsonElement rolesJson = gson.toJsonTree(rolesArray);
+		emp.add("role", rolesJson);
 		employees.add(emp);
 		saveToFile(employees);
 		System.out.println("Employee added successfully");
 	}
-	public void updateEmployee(String id, String name,String dept, String dob, String address,
-			String email) {
+
+	public void updateEmployee(String id, String name, String dept, String dob, String address, String email,Roles role) {
 		JsonArray employees = getDataFromFile();
 		for (JsonElement el : employees) {
 			JsonObject emp = el.getAsJsonObject();
-			if (emp.get("id").getAsString().equalsIgnoreCase(id)) {			
+			if (emp.get("id").getAsString().equalsIgnoreCase(id)) {
 				emp.addProperty("dob", dob);
 				emp.addProperty("address", address);
 				emp.addProperty("email", email);
-				if (!"USER".equals(ServerSideValidations.role)) {
+				if (!role.equals(Roles.USER)) {
 					emp.addProperty("name", name);
 					emp.addProperty("dept", dept);
 				}
@@ -110,7 +117,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					throw new InvalidIdException("Old password is incorrect");
 				}
 				emp.addProperty("password", newHash);
-				saveToFile(employees);				
+				saveToFile(employees);
 				return;
 			}
 		}
@@ -161,6 +168,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		saveToFile(employees);
 	}
+	public LoginResult validateUser(String id, String password) {
+		JsonArray employeesList = getDataFromFile();
+		for (JsonElement element : employeesList) {
+			JsonObject employee = element.getAsJsonObject();
+			if (employee.get("id").getAsString().equalsIgnoreCase(id)
+					&& employee.get("password").getAsString().equals(util.hash(password))) {
+				JsonArray rolesArray = employee.getAsJsonArray("role");
+				List<Roles> roleList = new ArrayList<>();
+				for (JsonElement roleEl : rolesArray) {
+					roleList.add(Roles.valueOf(roleEl.getAsString()));
+				}
+				String empId = employee.get("id").getAsString();
+				return new LoginResult(true, empId, roleList);
+			}
+		}
+		return new LoginResult(false, null, null);
+	}
 	private void printEmployee(JsonObject emp) {
 		System.out.println("----------------------");
 		System.out.println("ID       : " + emp.get("id").getAsString());
@@ -171,5 +195,4 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		System.out.println("Email    : " + emp.get("email").getAsString());
 		System.out.println("Roles    : " + emp.get("role"));
 	}
-
 }

@@ -137,19 +137,6 @@
     "email": "manohar.rao@yahoo.com"
   },
   {
-    "name": "sai kumar",
-    "id": "TEK-16",
-    "dept": "developer",
-    "dob": "2-3-1999",
-    "address": "Kolkata",
-    "email": "sai.kumar@tek.ac.in",
-    "password": "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
-    "role": [
-      "ADMIN",
-      "MANAGER"
-    ]
-  },
-  {
     "id": "TEK-17",
     "name": "ashok rao",
     "dept": "testing",
@@ -173,6 +160,18 @@
     "role": [
       "MANAGER",
       "USER"
+    ]
+  },
+  {
+    "id": "TEK-19",
+    "name": "bob smith",
+    "dept": "developer",
+    "dob": "02-03-2004",
+    "address": "Hayathnagar",
+    "email": "smith123@gmail.com",
+    "password": "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
+    "role": [
+      "ADMIN"
     ]
   }
 ]

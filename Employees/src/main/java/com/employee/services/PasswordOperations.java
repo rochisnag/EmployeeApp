@@ -1,21 +1,22 @@
 package com.employee.services;
 import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
-import com.employee.daoFile.EmployeeDaoImpl;
-import com.employee.daoFile.ServerSideValidations;
+import com.employee.dao.EmployeeFileDaoImpl;
+import com.employee.dao.ServerSideValidations;
 import com.employee.util.EmployeeUtil;
 import com.employee.exceptions.EmployeeDoesNotExists;
 import com.employee.exceptions.InvalidIdException;
+import com.employee.controller.*;
 
 public class PasswordOperations {
-	EmployeeDao dao = new EmployeeDaoImpl();
+	EmployeeDao dao = new EmployeeFileDaoImpl();
 	EmployeeUtil util = new EmployeeUtil();
 	GetEmployee getEmployee = new GetEmployee();
 	ServerSideValidations se = new ServerSideValidations();
 	private final Scanner sc = new Scanner(System.in);
 	public static final String defaultpass = "pass123";
-	public void changePassword() {
-		String id = ServerSideValidations.id;
+	public void changePassword(EmployeeDao dao) {
+		String id =  MenuController.currentUser.getEmpId();
 		try {
 			System.out.println("Enter old password:");
 			String oldPassword = sc.nextLine();	
@@ -37,7 +38,7 @@ public class PasswordOperations {
 			System.out.println("Error");
 		}
 	}
-	public void resetPassword() {
+	public void resetPassword(EmployeeDao dao) {
 		try {
 		System.out.print("Enter employee ID to reset password:");
 		String id = sc.nextLine();	

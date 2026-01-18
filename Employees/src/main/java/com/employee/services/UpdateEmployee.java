@@ -1,35 +1,37 @@
 package com.employee.services;
 import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
-import com.employee.daoFile.EmployeeDaoImpl;
-import com.employee.daoFile.ServerSideValidations;
+import com.employee.dao.ServerSideValidations;
 import com.employee.model.Employee;
 import com.employee.util.EmployeeUtil;
-
+import com.employee.util.Roles;
+import com.employee.controller.MenuController;
 public class UpdateEmployee {
-    EmployeeDao dao = new EmployeeDaoImpl();
 	EmployeeUtil util = new EmployeeUtil();
 	GetEmployee getEmployee = new GetEmployee();
 	private final Scanner sc = new Scanner(System.in);
 	ServerSideValidations se = new ServerSideValidations();
 	Employee employee = new Employee();
-	public void update() {
+	public void update(EmployeeDao dao) {
 		String id;
-		if (ServerSideValidations.role.equals("USER")) {
-			id = ServerSideValidations.id;
-		} else {
-			System.out.println("Enter emp id:");
-			id = sc.nextLine().trim().toUpperCase();
+		Roles role = null;
+		if (MenuController.currentUser.getRoles().contains(Roles.ADMIN)
+				|| MenuController.currentUser.getRoles().contains(Roles.MANAGER)) {
+			role = Roles.ADMIN;
 		}
-		boolean exists = se.checkEmpExists(id);
-		if (!exists) {
-			System.out.println("Invalid employee id");
-			return;
+		else {
+			role = Roles.USER;
+		}
+		if (role.equals(Roles.USER)) {
+			id = MenuController.currentUser.getEmpId();
+		} else {
+			System.out.print("Enter emp id:");
+			id = sc.nextLine().toUpperCase();
 		}
 		try {
 		String name = "";
 		String dept = "";
-		if (!ServerSideValidations.role.equals("USER")) {
+		if (!role.equals(Roles.USER)) {
 			System.out.println("Enter emp first name:");
 			 String fname = sc.nextLine();
 			System.out.println("Enter emp last name:");
@@ -46,7 +48,7 @@ public class UpdateEmployee {
 		String month = sc.nextLine();
 		System.out.println("Enter DOB - Year:");
 		String year = sc.nextLine();
-		String DOB = day + "-" + month + "-" + year;
+		String DOB = year + "-" + month + "-" + day;
 	     employee.setDob(DOB);
 		System.out.println("Enter employee address:");
 		String address = sc.nextLine();
@@ -54,11 +56,11 @@ public class UpdateEmployee {
 		System.out.println("Enter employee email:");
 		String email = sc.nextLine();
 		employee.setEmail(email);
-		dao.updateEmployee(id, name, dept, DOB, address, email);	
-		if (!"USER".equals(ServerSideValidations.role)) {
-			getEmployee.get_all();
+		dao.updateEmployee(id, name, dept, DOB, address, email,role);	
+		if (!role.equals(Roles.USER)) {
+			getEmployee.get_all(dao);
 		} else {
-			getEmployee.get_by_id();
+			getEmployee.get_by_id(dao);
 		}
 		System.out.println("Employee updated successfully");
 		}catch(IllegalArgumentException e) {

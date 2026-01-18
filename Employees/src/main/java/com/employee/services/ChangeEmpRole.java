@@ -1,12 +1,11 @@
 package com.employee.services;
 import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
-import com.employee.daoFile.EmployeeDaoImpl;
+import com.employee.dao.EmployeeFileDaoImpl;
 import com.employee.util.Roles;
-public class ChangeRole {
-	 EmployeeDao dao = new EmployeeDaoImpl();
+public class ChangeEmpRole {
 	private final Scanner sc = new Scanner(System.in);
-	public void grantRole() {
+	public void grantRole(EmployeeDao dao) {
 		System.out.print("Enter Employee ID to grant role: ");
 		String id = sc.nextLine().trim();
 		System.out.print("Enter Role to GRANT: ");
@@ -24,7 +23,7 @@ public class ChangeRole {
 			System.out.println(e.getMessage());
 		}
 	}
-	public void revokeRole() {
+	public void revokeRole(EmployeeDao dao) {
 		System.out.print("Enter Employee ID to revoke role: ");
 		String id = sc.nextLine().trim().toUpperCase();
 		System.out.print("Enter Role to revoke:");
