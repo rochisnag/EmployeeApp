@@ -37,23 +37,12 @@ public class Employee {
 		return password;
 	}
 	public void setName(String name) {
-		if (name == null || name.trim().isEmpty()) {
-			throw new IllegalArgumentException("Name cannot be null or empty");
-		}
 		this.name = name.trim();
 	}
 	public void setId(String id) {
-		Pattern idPattern = Pattern.compile("TEK-\\d+");
-		Matcher matcher = idPattern.matcher(id);
-		if (!matcher.matches()) {
-			throw new IllegalArgumentException("Invalid Id");
-		}
 		this.id = id.trim().toUpperCase();
 	}
 	public void setDept(String dept) {
-		if (dept == null || dept.trim().isEmpty()) {
-			throw new IllegalArgumentException("Dept cannot be null or empty");
-		}
 		this.dept = dept;
 	}
 	public void setDob(String dob) {
@@ -64,7 +53,7 @@ public class Employee {
 		int date = Integer.parseInt(parts[2]);
 		int month = Integer.parseInt(parts[1]);
 		int year = Integer.parseInt(parts[0]);
-		int minBirthYear = year - 100;  // Max age 100
+		int minBirthYear = year - 100; 
 		int maxBirthYear = year - 18;
 		if (year <minBirthYear || year > maxBirthYear || month < 1 || month > 12) {
 			throw new IllegalArgumentException("Invalid dates");
@@ -87,32 +76,16 @@ public class Employee {
 		this.dob = dob;
 	}
 	public void setAddress(String address) {
-		if (address == null || address.trim().isEmpty()) {
-			throw new IllegalArgumentException("Address cannot be null or empty");
-		}
 		this.address = address;
 	}
 	public void setEmail(String email) {
-		Pattern emailPattern = Pattern.compile("[A-Za-z0-9.]+@[A-Za-z0-9.]+\\.[A-za-z]{2,}");
-		Matcher matcher = emailPattern.matcher(email);
-		if (!matcher.matches()) {
-			throw new IllegalArgumentException("invalid Email");
-		}
 		this.email = email;
 	}
+
 	public void setRole(String role) {
-		try {
-			Roles choice;
-			choice = Roles.valueOf(role.toUpperCase());
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException("invalid Role");
-		}
 		this.role = role;
 	}
 	public void setPassword(String password) {
-		if (password == null || password.trim().isEmpty()) {
-			throw new IllegalArgumentException("password cannot be null or empty");
-		}
 		this.password = password;
 	}
 }

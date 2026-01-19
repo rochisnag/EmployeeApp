@@ -6,7 +6,7 @@ import com.employee.dao.ServerSideValidations;
 import com.employee.util.EmployeeUtil;
 import com.employee.exceptions.InvalidIdException;
 import com.employee.controller.MenuController;
-import org.mindrot.jbcrypt.BCrypt;
+
 
 public class PasswordOperations {
 	EmployeeDao dao = new EmployeeFileDaoImpl();

@@ -38,10 +38,10 @@ public class UpdateEmployee {
 			System.out.println("Enter emp last name:");
 			 String lname = sc.nextLine();	 
 			name = fname+" "+lname;
-			employee.setName(name);
+			if(!util.validateName(name)) return;
 			System.out.println("Enter emp dept:");
 			dept = sc.nextLine();
-			employee.setDept(dept);
+			if(!util.validateDept(dept)) return;
 		}
 		System.out.println("Enter DOB - Day:");
 		String day = sc.nextLine();
@@ -50,13 +50,13 @@ public class UpdateEmployee {
 		System.out.println("Enter DOB - Year:");
 		String year = sc.nextLine();
 		String DOB = year + "-" + month + "-" + day;
-	     employee.setDob(DOB);
+		if(!util.validateDob(DOB)) return;
 		System.out.println("Enter employee address:");
 		String address = sc.nextLine();
-		 employee.setAddress(address);
+		if(!util.validateAddress(address)) return;
 		System.out.println("Enter employee email:");
 		String email = sc.nextLine();
-		employee.setEmail(email);
+		if(!util.validateEmail(email)) return;
 		dao.updateEmployee(id, name, dept, DOB, address, email,role);	
 		if (!role.equals(Roles.USER)) {
 			getEmployee.getAll(dao);

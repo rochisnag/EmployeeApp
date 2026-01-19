@@ -15,37 +15,32 @@ public class AddEmployee {
 		try {
 		System.out.println("Enter emp first name:");
 		String fname = sc.nextLine();
-
 		System.out.println("Enter emp last name:");
 		String lname = sc.nextLine();
-
 		String name = fname +" "+lname;
-		employee.setName(name);
-
+		if(!util.validateName(name))
+			return;
 		System.out.println("Enter emp dept:");
 		String dept = sc.nextLine();
-		employee.setDept(dept);
-
+		if(!util.validateDept(dept))
+			return;
 		System.out.println("Enter emp date in DOB:");
 		String day = sc.nextLine();
-
 		System.out.println("Enter emp month in  DOB:");
 		String month = sc.nextLine();
-
 		System.out.println("Enter emp year in DOB:");
 		String year = sc.nextLine();
-
 		String DOB = year + "-" + month + "-" +day;
-		employee.setDob(DOB);
-
+		if(!util.validateDob(DOB))
+			return;
 		System.out.println("Enter emp address:");
 		String address = sc.nextLine();
-		employee.setAddress(address);
-
+		if(!util.validateAddress(address))
+			return;
 		System.out.println("Enter emp email:");
 		String email = sc.nextLine();
-		employee.setEmail(email);
-		
+		if(!util.validateEmail(email))
+			return;	
 		System.out.println("Enter emp role with , seperated :");
 		System.out.println("Available Roles:");
 		for (Roles role : Roles.values()) {
@@ -53,13 +48,13 @@ public class AddEmployee {
 		}
 		String roleInput = sc.nextLine();
        List<Roles> rolesArray = new ArrayList<>();
-      
-       for (String role : roleInput.split(",")) {
-			rolesArray.add(Roles.valueOf(role.trim().toUpperCase()));
-		} 
-       
+       for (String role : roleInput.split(",")) { 
+    	   Roles validatedRole = util.validateRole(role.trim().toUpperCase());
+    	    rolesArray.add(validatedRole);
+		}  
 		String password = util.generateRandomPassword();
-		employee.setPassword(password);
+		if(!util.validatePassword(password))
+			return;
 		String hashPassword = util.hash(password);
 		emp.addEmployee(name, dept, DOB, address, email, rolesArray, hashPassword);
 		getEmployee.getAll(emp);

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class EmployeeManagement {
     public static void main(String[] args) {
-    	 StorageTypes type = null;
+        StorageTypes type = null;
         Scanner sc = new Scanner(System.in);
         while(type==null) {
         System.out.println("Select Storage Type:");

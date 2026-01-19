@@ -114,25 +114,7 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
 		}
 		System.out.println("Employee not found");
 	}
-//	public void changePassword(String id, String oldHash, String newHash) {
-//		 if (!checkEmpExists(id)) {
-//		        throw new InvalidIdException("Employee ID does not exist");
-//		    }
-//		JsonArray employees = getDataFromFile();
-//		for (JsonElement el : employees) {
-//			JsonObject emp = el.getAsJsonObject();
-//			if (emp.get("id").getAsString().equalsIgnoreCase(id)) {
-//				String storedHash = emp.get("password").getAsString();
-//				if (!storedHash.equals(oldHash)) {
-//					throw new InvalidIdException("Old password is incorrect");
-//				}
-//				emp.addProperty("password", newHash);
-//				saveToFile(employees);
-//				return;
-//			}
-//		}
-//		throw new InvalidIdException("Employee ID not found");
-//	}
+
 	public void changePassword(String id, String oldPass, String newPass) {
 	    if (!checkEmpExists(id)) {
 	        throw new InvalidIdException("Employee ID does not exist");
@@ -214,51 +196,25 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
 		}
 		saveToFile(employees);
 	}
-//	public LoginResult validateUser(String id, String password) {
-//		JsonArray employeesList = getDataFromFile();
-//		for (JsonElement element : employeesList) {
-//			JsonObject employee = element.getAsJsonObject();
-//			if (employee.get("id").getAsString().equalsIgnoreCase(id)
-//					&& employee.get("password").getAsString().equals(util.hash(password))) {
-//				JsonArray rolesArray = employee.getAsJsonArray("role");
-//				List<Roles> roleList = new ArrayList<>();
-//				for (JsonElement roleEl : rolesArray) {
-//					roleList.add(Roles.valueOf(roleEl.getAsString()));
-//				}
-//				String empId = employee.get("id").getAsString();
-//				return new LoginResult(true, empId, roleList);
-//			}
-//		}
-//		return new LoginResult(false, null, null);
-//	}
+
 	public LoginResult validateUser(String id, String password) {
-
 	    JsonArray employeesList = getDataFromFile();
-
 	    for (JsonElement element : employeesList) {
 	        JsonObject employee = element.getAsJsonObject();
-
 	        if (employee.get("id").getAsString().equalsIgnoreCase(id)) {
-
-	            String storedHash = employee.get("password").getAsString();
-
-	           
+	            String storedHash = employee.get("password").getAsString();  
 	            if (util.verify(password, storedHash)) {
-
 	                JsonArray rolesArray = employee.getAsJsonArray("role");
 	                List<Roles> roleList = new ArrayList<>();
-
 	                for (JsonElement roleEl : rolesArray) {
 	                    roleList.add(Roles.valueOf(roleEl.getAsString()));
 	                }
-
 	                return new LoginResult(true, employee.get("id").getAsString(), roleList);
 	            }
 	        }
 	    }
 	    return new LoginResult(false, null, null);
 	}
-
 	  private boolean checkEmpExists(String checkId) {
 	        if (!EmployeeFileDaoImpl.file.exists() || EmployeeFileDaoImpl.file.length() == 0) {
 	            return false;
