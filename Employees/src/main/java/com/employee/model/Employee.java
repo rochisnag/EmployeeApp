@@ -64,7 +64,9 @@ public class Employee {
 		int date = Integer.parseInt(parts[2]);
 		int month = Integer.parseInt(parts[1]);
 		int year = Integer.parseInt(parts[0]);
-		if (year < 1970 || year > 2007 || month < 1 || month > 12) {
+		int minBirthYear = year - 100;  // Max age 100
+		int maxBirthYear = year - 18;
+		if (year <minBirthYear || year > maxBirthYear || month < 1 || month > 12) {
 			throw new IllegalArgumentException("Invalid dates");
 		}
 		int maxDays;

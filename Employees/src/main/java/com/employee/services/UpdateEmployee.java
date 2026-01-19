@@ -6,6 +6,7 @@ import com.employee.model.Employee;
 import com.employee.util.EmployeeUtil;
 import com.employee.util.Roles;
 import com.employee.controller.MenuController;
+import com.employee.exceptions.EmployeeDoesNotExists;
 public class UpdateEmployee {
 	EmployeeUtil util = new EmployeeUtil();
 	GetEmployee getEmployee = new GetEmployee();
@@ -58,13 +59,15 @@ public class UpdateEmployee {
 		employee.setEmail(email);
 		dao.updateEmployee(id, name, dept, DOB, address, email,role);	
 		if (!role.equals(Roles.USER)) {
-			getEmployee.get_all(dao);
+			getEmployee.getAll(dao);
 		} else {
-			getEmployee.get_by_id(dao);
+			getEmployee.getById(dao);
 		}
 		System.out.println("Employee updated successfully");
 		}catch(IllegalArgumentException e) {
 			System.out.println("Invalid input: "+e.getMessage());
+		}catch(EmployeeDoesNotExists e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }

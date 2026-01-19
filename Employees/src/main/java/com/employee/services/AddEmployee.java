@@ -1,7 +1,6 @@
 package com.employee.services;
 import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
-import com.employee.dao.EmployeeFileDaoImpl;
 import com.employee.model.Employee;
 import com.employee.util.EmployeeUtil;
 import com.employee.util.Roles;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 public class AddEmployee {
 	Employee employee = new Employee();
 	private final Scanner sc = new Scanner(System.in);
-  
 	EmployeeUtil util = new EmployeeUtil();
     GetEmployee getEmployee = new GetEmployee();
 	public void insert(EmployeeDao emp) {
@@ -58,12 +56,13 @@ public class AddEmployee {
       
        for (String role : roleInput.split(",")) {
 			rolesArray.add(Roles.valueOf(role.trim().toUpperCase()));
-		}  
-		String password = PasswordOperations.defaultpass;
+		} 
+       
+		String password = util.generateRandomPassword();
 		employee.setPassword(password);
 		String hashPassword = util.hash(password);
 		emp.addEmployee(name, dept, DOB, address, email, rolesArray, hashPassword);
-		getEmployee.get_all(emp);
+		getEmployee.getAll(emp);
 		}catch(IllegalArgumentException e) {
 			System.out.println("Invalid inputs: " +e.getMessage());
 			 e.printStackTrace();

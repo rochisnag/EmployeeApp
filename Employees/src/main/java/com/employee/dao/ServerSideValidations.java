@@ -8,23 +8,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class ServerSideValidations {
-    public  boolean checkEmpExists(String checkId) {
-        if (!EmployeeFileDaoImpl.file.exists() || EmployeeFileDaoImpl.file.length() == 0) {
-            return false;
-        }
-        try (FileReader reader = new FileReader(EmployeeFileDaoImpl.file)) {
-            JsonArray employees = JsonParser.parseReader(reader).getAsJsonArray();
-            for (JsonElement el : employees) {
-                JsonObject emp = el.getAsJsonObject();
-                if (emp.get("id").getAsString().equals(checkId)) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Error checking employee: " + e.getMessage());
-        }
-        return false;
-    }
     public  String generateAutoId(){;
 	  	final String prefix = "TEK-";
 		int id = 1;

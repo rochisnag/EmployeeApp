@@ -4,9 +4,9 @@ import com.employee.dao.EmployeeDao;
 import com.employee.dao.EmployeeFileDaoImpl;
 import com.employee.dao.ServerSideValidations;
 import com.employee.util.EmployeeUtil;
-import com.employee.exceptions.EmployeeDoesNotExists;
 import com.employee.exceptions.InvalidIdException;
-import com.employee.controller.*;
+import com.employee.controller.MenuController;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordOperations {
 	EmployeeDao dao = new EmployeeFileDaoImpl();
@@ -14,7 +14,16 @@ public class PasswordOperations {
 	GetEmployee getEmployee = new GetEmployee();
 	ServerSideValidations se = new ServerSideValidations();
 	private final Scanner sc = new Scanner(System.in);
-	public static final String defaultpass = "pass123";
+	private static String getHashedDefaultPassword() {
+	    String defaultPassword = System.getenv("DefaultPassword");
+	    if (defaultPassword == null || defaultPassword.isEmpty()) {
+	        throw new IllegalStateException(
+	            "DEFAULT_PASSWORD environment variable is not set"
+	        );
+	    }
+	    EmployeeUtil util = new EmployeeUtil();
+	    return util.hash(defaultPassword);   
+	}
 	public void changePassword(EmployeeDao dao) {
 		String id =  MenuController.currentUser.getEmpId();
 		try {
@@ -28,10 +37,9 @@ public class PasswordOperations {
 				System.out.println("Passwords didn't match");
 				return;
 			}
-			String oldHash = util.hash(oldPassword);
-			String newHash = util.hash(newPassword);
-			dao.changePassword(id.toUpperCase(), oldHash, newHash);
-			System.out.println("Password changed successfully");
+			
+			dao.changePassword(id.toUpperCase(), oldPassword, newPassword);
+		
 		} catch (InvalidIdException e) {
 			System.out.println(e.getMessage());
 		} catch (Exception e) {
@@ -42,17 +50,12 @@ public class PasswordOperations {
 		try {
 		System.out.print("Enter employee ID to reset password:");
 		String id = sc.nextLine();	
-		boolean exists = se.checkEmpExists(id.toUpperCase());
-		if (exists) {
-			String hashPassword = util.hash(defaultpass);
+			String hashPassword = getHashedDefaultPassword();
 			dao.resetPassword(id.toUpperCase(), hashPassword);
-			System.out.println("Password reset successfully to default:" + defaultpass);
-		}else {
-			throw new EmployeeDoesNotExists("Employee doesnot exist");
-		}
-		}catch (EmployeeDoesNotExists e) {
+            System.out.println("Password reset successfully for employee: " + id.toUpperCase() );
+		}catch (InvalidIdException e) {
 			System.out.println(e.getMessage());
-		} catch (Exception e) {
+		}catch (Exception e) {
 			System.out.println("Error:" + e.getMessage());
 		}
 	}

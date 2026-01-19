@@ -1,8 +1,8 @@
 package com.employee.services;
 import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
-import com.employee.dao.EmployeeFileDaoImpl;
 import com.employee.util.Roles;
+import com.employee.exceptions.InvalidIdException;
 public class ChangeEmpRole {
 	private final Scanner sc = new Scanner(System.in);
 	public void grantRole(EmployeeDao dao) {
@@ -19,9 +19,12 @@ public class ChangeEmpRole {
 			for (Roles r : Roles.values()) {
 				System.out.println("- " + r.name());
 			}
-		} catch (Exception e) {
+		} catch (InvalidIdException e) {
+			System.out.println(e.getMessage());
+		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
 	}
 	public void revokeRole(EmployeeDao dao) {
 		System.out.print("Enter Employee ID to revoke role: ");
@@ -32,12 +35,14 @@ public class ChangeEmpRole {
 			Roles.valueOf(roleInput);
 			dao.revokeRole(id, roleInput);
 			System.out.println("Role revoked successfully!");
-		} catch (IllegalArgumentException e) {
+		}  catch (InvalidIdException e) {
+			System.out.println(e.getMessage());
+		}catch (IllegalArgumentException e) {
 			System.out.println("Invalid role. Valid roles are:");
 			for (Roles r : Roles.values()) {
 				System.out.println("- " + r.name());
 			}
-		} catch (Exception e) {
+		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}

@@ -7,8 +7,8 @@ public interface EmployeeDao {
 			String hashPassword);
 	void updateEmployee(String id, String name, String dept, String DOB, String address, String email,Roles role);
 	void deleteEmployee(String id);
-	void viewEmployee();
-	void viewEmployee_by_id(String id);
+	void viewAllEmployee();
+	void viewEmployeeById(String id);
 	void changePassword(String id, String oldpass, String password);
 	void resetPassword(String id, String password);
 	void grantRole(String id, String role);

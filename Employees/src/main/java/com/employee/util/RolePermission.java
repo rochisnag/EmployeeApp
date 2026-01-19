@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Collections;
 public class RolePermission {
  private static  Map<Roles,Set<Operations>> map=new HashMap<>(); 
 	public RolePermission() {
@@ -33,7 +34,7 @@ public class RolePermission {
 	}
 	public boolean hasAccess(List<Roles> roles,Operations operation) {
 		for(Roles role:roles) {
-			if(map.getOrDefault(role,Set.of()).contains(operation)) {
+			   if (map.getOrDefault(role, Collections.emptySet()).contains(operation)) {
 				return true;
 			}
 		}

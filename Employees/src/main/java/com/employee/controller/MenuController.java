@@ -17,7 +17,7 @@ import com.employee.services.ChangeEmpRole;
 public class MenuController {
     public static LoginResult currentUser;
     public void displayMenu(EmployeeDao dao) {
-        Scanner sc = new Scanner(System.in);
+       Scanner sc = new Scanner(System.in);
         AddEmployee addEmployee = new AddEmployee();
         UpdateEmployee updateEmployee = new UpdateEmployee();
         DeleteEmployee deleteEmployee = new DeleteEmployee();
@@ -40,7 +40,7 @@ public class MenuController {
                 }
             }
             System.out.print("\nEnter choice: ");
-            String input = sc.nextLine().toUpperCase();
+            String input = sc.next().toUpperCase();
             Operations choice;
             try {
                 choice = Operations.valueOf(input);
@@ -63,10 +63,10 @@ public class MenuController {
                     deleteEmployee.delete(dao);
                     break;
                 case FETCH:
-                    fetchEmployee.get_all(dao);
+                    fetchEmployee.getAll(dao);
                     break;
                 case FETCH_EMPLOYEE_BY_ID:
-                    fetchEmployee.get_by_id(dao);
+                    fetchEmployee.getById(dao);
                     break;
                 case RESETPASSWORD:
                     passwordOperations.resetPassword(dao);

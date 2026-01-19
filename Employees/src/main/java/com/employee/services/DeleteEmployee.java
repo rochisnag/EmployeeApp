@@ -1,7 +1,6 @@
 package com.employee.services;
 import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
-import com.employee.dao.EmployeeFileDaoImpl;
 import com.employee.dao.ServerSideValidations;
 import com.employee.exceptions.EmployeeDoesNotExists;
 
@@ -16,7 +15,7 @@ public class DeleteEmployee {
 			String inputId = sc.nextLine();
 			dao.deleteEmployee(inputId.toUpperCase());
 			System.out.println("Employee deleted successfully");
-			getEmployee.get_all(dao);
+			getEmployee.getAll(dao);
 		} catch (EmployeeDoesNotExists e) {
 			System.out.println(e.getMessage());
 		} catch (Exception e) {
