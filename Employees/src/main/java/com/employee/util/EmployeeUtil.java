@@ -16,12 +16,16 @@ import org.mindrot.jbcrypt.BCrypt;
 import com.employee.model.Employee;
 public class EmployeeUtil {
  Employee employee = new Employee();
-  
    public String hash(String password) {
 	    return BCrypt.hashpw(password, BCrypt.gensalt());
 	}
-	public boolean verify(String plainPassword, String hashedPassword) {
-	    return BCrypt.checkpw(plainPassword, hashedPassword);
+	public boolean verify(String plainPassword, String hashedPassword) {  
+		 if (plainPassword == null) {
+		        throw new NullPointerException("Password cannot be null");
+		    }
+		    if (plainPassword.isEmpty()) {
+		        return false;
+		    }return BCrypt.checkpw(plainPassword, hashedPassword);
 	}
 	public  String generateRandomPassword() {
 		String lower = "abcdefghijklmnopqrstuvwxyz";
