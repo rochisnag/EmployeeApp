@@ -8,11 +8,11 @@ import com.employee.util.Roles;
 import com.employee.controller.MenuController;
 import com.employee.exceptions.EmployeeDoesNotExists;
 public class UpdateEmployee {
-	EmployeeUtil util = new EmployeeUtil();
 	GetEmployee getEmployee = new GetEmployee();
 	private final Scanner sc = new Scanner(System.in);
 	ServerSideValidations se = new ServerSideValidations();
 	Employee employee = new Employee();
+	EmployeeUtil util = new EmployeeUtil();
 	public void update(EmployeeDao dao) {
 		String id;
 		Roles role = null;
@@ -25,7 +25,7 @@ public class UpdateEmployee {
 		}
 		if (role.equals(Roles.USER)) {
 			id = MenuController.currentUser.getEmpId();
-		} else {
+		}else {
 			System.out.print("Enter emp id:");
 			id = sc.nextLine().toUpperCase();
 		}

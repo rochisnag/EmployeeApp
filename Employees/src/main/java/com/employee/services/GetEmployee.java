@@ -8,6 +8,7 @@ import com.employee.util.EmployeeUtil;
 import com.employee.util.Roles;
 import com.employee.controller.MenuController;
 import com.employee.exceptions.InvalidIdException;
+import com.employee.model.Employee;
 public class GetEmployee {	
     EmployeeDao dao = new EmployeeFileDaoImpl();
     EmployeeUtil util = new EmployeeUtil();

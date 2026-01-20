@@ -15,3 +15,4 @@ public interface EmployeeDao {
 	void revokeRole(String id, String role);
 	LoginResult validateUser(String id,String password);
 }
+ 

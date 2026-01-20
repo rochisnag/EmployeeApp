@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-
 public class EmployeeDbDaoImpl implements EmployeeDao {
 	EmployeeUtil util = new EmployeeUtil();
 	Connection conn = util.getConnection();

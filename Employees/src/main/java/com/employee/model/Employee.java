@@ -46,33 +46,6 @@ public class Employee {
 		this.dept = dept;
 	}
 	public void setDob(String dob) {
-		if (dob == null || !dob.matches("\\d{4}-\\d{1,2}-\\d{1,2}")) {
-			throw new IllegalArgumentException("Invalid DOB format. Expected: DD-MM-YYYY");
-		}
-		String[] parts = dob.split("-");
-		int date = Integer.parseInt(parts[2]);
-		int month = Integer.parseInt(parts[1]);
-		int year = Integer.parseInt(parts[0]);
-		int minBirthYear = year - 100; 
-		int maxBirthYear = year - 18;
-		if (year <minBirthYear || year > maxBirthYear || month < 1 || month > 12) {
-			throw new IllegalArgumentException("Invalid dates");
-		}
-		int maxDays;
-		if (month == 2) {
-			if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-				maxDays = 29;
-			} else {
-				maxDays = 28;
-			}
-		} else if (month == 4 || month == 6 || month == 9 || month == 11) {
-			maxDays = 30;
-		} else {
-			maxDays = 31;
-		}
-		if (date < 1 || date > maxDays) {
-			throw new IllegalArgumentException("Invalid dates");
-		}
 		this.dob = dob;
 	}
 	public void setAddress(String address) {

@@ -7,7 +7,7 @@ import com.employee.util.Roles;
 import java.util.List;
 import java.util.ArrayList;
 public class AddEmployee {
-	Employee employee = new Employee();
+	
 	private final Scanner sc = new Scanner(System.in);
 	EmployeeUtil util = new EmployeeUtil();
     GetEmployee getEmployee = new GetEmployee();

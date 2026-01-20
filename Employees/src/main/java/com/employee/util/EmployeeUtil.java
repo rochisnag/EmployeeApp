@@ -15,8 +15,9 @@ import java.util.Collections;
 import org.mindrot.jbcrypt.BCrypt;
 import com.employee.model.Employee;
 public class EmployeeUtil {
-	Employee employee = new Employee();
-	public String hash(String password) {
+ Employee employee = new Employee();
+  
+   public String hash(String password) {
 	    return BCrypt.hashpw(password, BCrypt.gensalt());
 	}
 	public boolean verify(String plainPassword, String hashedPassword) {
@@ -46,6 +47,10 @@ public class EmployeeUtil {
 	}
 	
 	public boolean validateId(String id) {
+	    if (id == null || id.trim().isEmpty()) {
+	        System.out.println("ID cannot be null or empty");
+	          return false;
+	    }
 		Pattern idPattern = Pattern.compile("TEK-\\d+");
 		Matcher matcher = idPattern.matcher(id);
 		if (matcher.matches()) {
@@ -72,15 +77,16 @@ public class EmployeeUtil {
 		return true;
 	}
 	public boolean validateDob(String dob) {
-	    if (dob == null || !dob.matches("\\d{4}-\\d{1,2}-\\d{1,2}")) {
-	        throw new IllegalArgumentException("Invalid DOB format. Expected: DD-MM-YYYY");
-	    }
+		 if (dob == null || !dob.matches("\\d{4}-\\d{1,2}-\\d{1,2}")) {
+		        throw new IllegalArgumentException("Invalid DOB format. Expected: YYYY-M-D");
+		    }
 	    String[] parts = dob.split("-");
 	    int date = Integer.parseInt(parts[2]);
 	    int month = Integer.parseInt(parts[1]);
 	    int year = Integer.parseInt(parts[0]);
-	    int minBirthYear = year - 100; 
-	    int maxBirthYear = year - 18;
+	    int currentYear = java.time.LocalDate.now().getYear();
+	    int minBirthYear = currentYear - 100; 
+	    int maxBirthYear = currentYear - 18;
 	    if (year < minBirthYear || year > maxBirthYear || month < 1 || month > 12) {
 	        throw new IllegalArgumentException("Invalid dates");
 	    }
@@ -112,6 +118,10 @@ public class EmployeeUtil {
 		return true;
 	}
 	public boolean validateEmail(String email) {
+	    if (email == null || email.trim().isEmpty()) {
+	        System.out.println("ID cannot be null or empty");
+	        return false;
+	    }
 		Pattern emailPattern = Pattern.compile("[A-Za-z0-9.]+@[A-Za-z0-9.]+\\.[A-za-z]{2,}");
 		Matcher matcher = emailPattern.matcher(email);
 		if (matcher.matches()) {

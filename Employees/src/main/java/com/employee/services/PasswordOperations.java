@@ -5,8 +5,8 @@ import com.employee.dao.EmployeeFileDaoImpl;
 import com.employee.dao.ServerSideValidations;
 import com.employee.util.EmployeeUtil;
 import com.employee.exceptions.InvalidIdException;
+import com.employee.model.Employee;
 import com.employee.controller.MenuController;
-
 
 public class PasswordOperations {
 	EmployeeDao dao = new EmployeeFileDaoImpl();
@@ -37,9 +37,7 @@ public class PasswordOperations {
 				System.out.println("Passwords didn't match");
 				return;
 			}
-			
 			dao.changePassword(id.toUpperCase(), oldPassword, newPassword);
-		
 		} catch (InvalidIdException e) {
 			System.out.println(e.getMessage());
 		} catch (Exception e) {
@@ -58,5 +56,5 @@ public class PasswordOperations {
 		}catch (Exception e) {
 			System.out.println("Error:" + e.getMessage());
 		}
-	}
+	}  
 }
