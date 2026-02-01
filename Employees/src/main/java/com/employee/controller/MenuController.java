@@ -6,13 +6,13 @@ import com.employee.model.LoginResult;
 import com.employee.util.Operations;
 import com.employee.util.RolePermission;
 import com.employee.util.Roles;
-import com.employee.services.EmployeeLogin;
+import com.employee.services.LoginService;
 
 public class MenuController {
   public static LoginResult currentUser;
   private final  Scanner sc = new Scanner(System.in);
   EmployeeController controller = new EmployeeController();
-  EmployeeLogin validator = new EmployeeLogin();
+  LoginService validator = new LoginService();
   RolePermission rolePermission = new RolePermission();
   public void displayMenu(EmployeeDao dao) {  
     LoginController loginController = new LoginController();  
