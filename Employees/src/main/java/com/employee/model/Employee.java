@@ -1,6 +1,6 @@
 package com.employee.model;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
+import java.util.ArrayList;
 import com.employee.util.Roles;
 
 public class Employee {
@@ -10,8 +10,27 @@ public class Employee {
 	private String dob;
 	private String address;
 	private String email;
-	private String role;
+	private List<Roles> roles = new ArrayList<>(); 
 	private String password;
+	public Employee() {}
+	public Employee(String name, String dept, String dob, String address, String email, List<Roles> roles, String password){
+		this.name = name;
+		this.dept = dept;
+		this.dob = dob;
+		this.address = address;
+		this.email = email;
+		this.roles = roles;
+		this.password =password;
+	}
+	public Employee(String id, String name, String dept, String dob, String address, String email) {
+		this.id = id;
+		this.name = name;
+		this.dept = dept;
+		this.dob = dob;
+		this.address = address;
+		this.email = email;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -30,8 +49,8 @@ public class Employee {
 	public String getEmail() {
 		return email;
 	}
-	public String getRole() {
-		return role;
+	public List<Roles> getRoles() {
+		return roles;
 	}
 	public String getPassword() {
 		return password;
@@ -54,11 +73,11 @@ public class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public void setRole(String role) {
-		this.role = role;
+	public void setRole(List<Roles> roles) {
+		this.roles= roles;
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
+	} 
+
 }

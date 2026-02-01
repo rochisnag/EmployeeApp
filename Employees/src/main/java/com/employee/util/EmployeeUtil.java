@@ -14,8 +14,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.mindrot.jbcrypt.BCrypt;
 import com.employee.model.Employee;
+
 public class EmployeeUtil {
- Employee employee = new Employee();
+ private Employee employee = new Employee();
    public String hash(String password) {
 	    return BCrypt.hashpw(password, BCrypt.gensalt());
 	}
@@ -25,7 +26,8 @@ public class EmployeeUtil {
 		    }
 		    if (plainPassword.isEmpty()) {
 		        return false;
-		    }return BCrypt.checkpw(plainPassword, hashedPassword);
+		    }
+		    return BCrypt.checkpw(plainPassword, hashedPassword);
 	}
 	public  String generateRandomPassword() {
 		String lower = "abcdefghijklmnopqrstuvwxyz";
@@ -52,7 +54,6 @@ public class EmployeeUtil {
 	
 	public boolean validateId(String id) {
 	    if (id == null || id.trim().isEmpty()) {
-	        System.out.println("ID cannot be null or empty");
 	          return false;
 	    }
 		Pattern idPattern = Pattern.compile("TEK-\\d+");
@@ -61,7 +62,6 @@ public class EmployeeUtil {
 			employee.setId(id);
 			return true;
 		}
-		System.out.println("Invalid ID format");
 		return false;
 	}
 	public boolean validateName(String name) {
@@ -74,7 +74,6 @@ public class EmployeeUtil {
 	}
 	public boolean validateDept(String dept) {
 		if (dept == null || dept.trim().isEmpty()) {
-			System.out.println("Invalid Department format");
 			return false;
 		}
 		employee.setDept(dept);
@@ -82,8 +81,8 @@ public class EmployeeUtil {
 	}
 	public boolean validateDob(String dob) {
 		 if (dob == null || !dob.matches("\\d{4}-\\d{1,2}-\\d{1,2}")) {
-		        throw new IllegalArgumentException("Invalid DOB format. Expected: YYYY-M-D");
-		    }
+		    return false;
+		 }
 	    String[] parts = dob.split("-");
 	    int date = Integer.parseInt(parts[2]);
 	    int month = Integer.parseInt(parts[1]);
@@ -92,7 +91,7 @@ public class EmployeeUtil {
 	    int minBirthYear = currentYear - 100; 
 	    int maxBirthYear = currentYear - 18;
 	    if (year < minBirthYear || year > maxBirthYear || month < 1 || month > 12) {
-	        throw new IllegalArgumentException("Invalid dates");
+	     return false;
 	    }
 	    int maxDays;
 	    if (month == 2) {
@@ -107,23 +106,20 @@ public class EmployeeUtil {
 	        maxDays = 31;
 	    }
 	    if (date < 1 || date > maxDays) {
-	        throw new IllegalArgumentException("Invalid dates");
+	       return false;
 	    }
 	    employee.setDob(dob);
 	    return true;
 	}
-
 	public boolean validateAddress(String address) {
 		if (address == null || address.trim().isEmpty()) {
-			System.out.println("Invalid address format");
 			return false;
 		}
-		employee.setDept(address);
+		employee.setAddress(address);
 		return true;
 	}
 	public boolean validateEmail(String email) {
 	    if (email == null || email.trim().isEmpty()) {
-	        System.out.println("ID cannot be null or empty");
 	        return false;
 	    }
 		Pattern emailPattern = Pattern.compile("[A-Za-z0-9.]+@[A-Za-z0-9.]+\\.[A-za-z]{2,}");
@@ -132,26 +128,39 @@ public class EmployeeUtil {
 			employee.setEmail(email);
 			return true;
 		}
-		System.out.println("Invalid Email format");
 		return false;
 	}
 	public boolean validatePassword(String password) {
 		if (password == null || password.trim().isEmpty()) {
-			System.out.println("Invalid password format");
 			return false;
 		}
-		employee.setPassword(password);
+		employee.setPassword(hash(password));
 		return true;
 	}
-	public Roles validateRole(String role) {
-	    if (role == null || role.trim().isEmpty()) {
-	        throw new IllegalArgumentException("Role cannot be empty");
+	public boolean validateRole(List<Roles> roles) {
+	    if (roles == null || roles.isEmpty()) {
+	        return false;
 	    }
-	    try {
-	        return Roles.valueOf(role.trim().toUpperCase());
-	    } catch (IllegalArgumentException e) {
-	        throw new IllegalArgumentException("Invalid role: " + role);
+	    List<Roles> normalizedRoles = new ArrayList<>();
+	    for (Roles role : roles) {
+	        if (role == null) {
+	            return false;
+	        }
+	        normalizedRoles.add(Roles.valueOf(role.toString().toUpperCase()));
 	    }
+	    employee.setRole(new ArrayList<>(normalizedRoles));
+	    return true;
+	}
+	public boolean validateSingleRole(String role){
+	     if (role == null) {
+	         return false;
+	     }
+	     try{
+	         Roles.valueOf(role.toString().toUpperCase());
+	         return true;        
+	     }catch (IllegalArgumentException e) {
+	             return false;
+	     }
 	}
 	public  Connection getConnection() {
 		Properties prop = new Properties();
@@ -161,7 +170,6 @@ public class EmployeeUtil {
 			String username = prop.getProperty("db.username");
 			String password = prop.getProperty("db.password");
 			Connection conn = DriverManager.getConnection(url, username, password);
-			System.out.println("Connection to db successful...");
 			return conn;
 		} catch (IOException e) {
 			System.out.println("Unable to read property file" + e.getMessage());

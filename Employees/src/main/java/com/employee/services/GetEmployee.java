@@ -1,39 +1,41 @@
 package com.employee.services;
-import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
-import com.employee.dao.EmployeeFileDaoImpl;
-import com.employee.dao.ServerSideValidations;
-import com.employee.exceptions.EmployeeDoesNotExists;
+import com.employee.exceptions.EmployeeDoesNotExists;  
+import com.employee.exceptions.ServiceException;
+import com.employee.exceptions.ValidationException;
+import com.employee.exceptions.DataAccessException;
 import com.employee.util.EmployeeUtil;
 import com.employee.util.Roles;
 import com.employee.controller.MenuController;
-import com.employee.exceptions.InvalidIdException;
 import com.employee.model.Employee;
-public class GetEmployee {	
-    EmployeeDao dao = new EmployeeFileDaoImpl();
-    EmployeeUtil util = new EmployeeUtil();
-    ServerSideValidations se = new ServerSideValidations();
-	private final  Scanner sc = new Scanner(System.in);
-    public void getAll(EmployeeDao dao) {
-		dao.viewAllEmployee();
-	}
-    public void getById(EmployeeDao dao) {
+import java.util.List;
+
+public class GetEmployee {
+    private final EmployeeUtil util = new EmployeeUtil();
+    public List<Employee> getAllEmployees(EmployeeDao dao) {
         try {
-            if (MenuController.currentUser.getRoles().contains(Roles.ADMIN)
-                    || MenuController.currentUser.getRoles().contains(Roles.MANAGER)) {
-                System.out.println("Enter emp id:");
-                String id = sc.nextLine();
-                dao.viewEmployeeById(id);
-            } else {
-                System.out.println("Access denied");
+          List<Employee> employees =   dao.viewAllEmployee();
+          return employees;
+        } catch (DataAccessException | EmployeeDoesNotExists e) {
+        	throw new ServiceException("Unable to fetch employees details: " + e.getMessage(), e);
+        }
+    }	
+    public Employee getEmployeeById(EmployeeDao dao,String id){
+            if (!MenuController.currentUser.getRoles().contains(Roles.ADMIN)
+                    && !MenuController.currentUser.getRoles().contains(Roles.MANAGER)) {
+                throw new ServiceException("Access denied");
             }
-        } catch(InvalidIdException e) {
-        	System.out.println(e.getMessage());
-        }catch (EmployeeDoesNotExists e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            if (!util.validateId(id)) {
+                throw new ValidationException("Invalid employee ID format");
+            }
+           try {
+        	   Employee employee = dao.viewEmployeeById(id);
+        	   if(employee==null) {
+        		   throw new EmployeeDoesNotExists("employee not found");
+        	   }
+                 return employee;
+        } catch (DataAccessException e) {
+        	throw new ServiceException("Unable to fetch employee details: " + e.getMessage());
         }
     }
-
 }

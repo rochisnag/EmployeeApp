@@ -1,25 +1,26 @@
 package com.employee.services;
-import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
-import com.employee.dao.ServerSideValidations;
+import com.employee.exceptions.ValidationException;
+import com.employee.util.EmployeeUtil;
+import com.employee.exceptions.ServiceException;
 import com.employee.exceptions.EmployeeDoesNotExists;
+import com.employee.exceptions.DataAccessException;
 
 public class DeleteEmployee {
-	
-	ServerSideValidations se = new ServerSideValidations();
-	private final Scanner sc = new Scanner(System.in);
-	public void delete(EmployeeDao dao) {
-		GetEmployee getEmployee = new GetEmployee();
+	private final EmployeeUtil util = new EmployeeUtil();
+	public boolean delete(EmployeeDao dao,String id) {
+		id = id.toUpperCase();
+		if (!util.validateId(id)) {
+            throw new ValidationException("Invalid employee ID");
+        }
 		try {
-			System.out.println("Enter empId to delete: ");
-			String inputId = sc.nextLine();
-			dao.deleteEmployee(inputId.toUpperCase());
-			System.out.println("Employee deleted successfully");
-			getEmployee.getAll(dao);
-		} catch (EmployeeDoesNotExists e) {
-			System.out.println(e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
+			boolean result = dao.deleteEmployee(id);
+			if(!result) {
+				throw new EmployeeDoesNotExists("Employee not found");
+			}
+			return true;
+		}catch(DataAccessException e) {
+		   throw new ServiceException("unable to delete employee for "+id+e.getMessage(), e);
 		}
 	}
 }

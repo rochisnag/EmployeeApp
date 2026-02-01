@@ -33,6 +33,9 @@ public class RolePermission {
 				));
 	}
 	public boolean hasAccess(List<Roles> roles,Operations operation) {
+		  if (roles == null || roles.isEmpty()) {
+		        return false; 
+		  }
 		for(Roles role:roles) {
 			   if (map.getOrDefault(role, Collections.emptySet()).contains(operation)) {
 				return true;

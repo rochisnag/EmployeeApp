@@ -1,49 +1,50 @@
 package com.employee.services;
-import java.util.Scanner;
 import com.employee.dao.EmployeeDao;
+import com.employee.exceptions.EmployeeDoesNotExists;
+import com.employee.exceptions.ServiceException;
+import com.employee.exceptions.ValidationException;
+import com.employee.exceptions.DataAccessException;
+import com.employee.util.EmployeeUtil;
 import com.employee.util.Roles;
-import com.employee.exceptions.InvalidIdException;
+
 public class ChangeEmpRole {
-	private final Scanner sc = new Scanner(System.in);
-	public void grantRole(EmployeeDao dao) {
-		System.out.print("Enter Employee ID to grant role: ");
-		String id = sc.nextLine().trim();
-		System.out.print("Enter Role to GRANT: ");
-		String roleInput = sc.nextLine().trim().toUpperCase();
-		try {
-			Roles.valueOf(roleInput);
-			dao.grantRole(id.toUpperCase(), roleInput);
-			System.out.println("Role granted successfully!");
-		} catch (IllegalArgumentException e) {
-			System.out.println("Invalid role .Valid roles are:");
-			for (Roles r : Roles.values()) {
-				System.out.println("- " + r.name());
-			}
-		} catch (InvalidIdException e) {
-			System.out.println(e.getMessage());
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-	}
-	public void revokeRole(EmployeeDao dao) {
-		System.out.print("Enter Employee ID to revoke role: ");
-		String id = sc.nextLine().trim().toUpperCase();
-		System.out.print("Enter Role to revoke:");
-		String roleInput = sc.nextLine().trim().toUpperCase();
-		try {
-			Roles.valueOf(roleInput);
-			dao.revokeRole(id, roleInput);
-			System.out.println("Role revoked successfully!");
-		}  catch (InvalidIdException e) {
-			System.out.println(e.getMessage());
-		}catch (IllegalArgumentException e) {
-			System.out.println("Invalid role. Valid roles are:");
-			for (Roles r : Roles.values()) {
-				System.out.println("- " + r.name());
-			}
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
+    private final EmployeeUtil util = new EmployeeUtil();
+    public boolean grantRole(String empId, String roleStr, EmployeeDao dao) {
+        empId = empId == null ? null : empId.trim().toUpperCase();
+        if (!util.validateId(empId)) {
+            throw new ValidationException("Invalid employee ID");
+        }
+        if (!util.validateSingleRole(roleStr)) {
+            throw new ValidationException("Invalid role: " + roleStr);
+        }
+        Roles role = Roles.valueOf(roleStr.trim().toUpperCase());
+        try {
+          boolean result =  dao.grantRole(empId, role);
+          if(!result) {
+        	  throw new ServiceException("Failed to grant role");
+          }
+          return true;
+        } catch (EmployeeDoesNotExists | DataAccessException e) {
+            throw new ServiceException("Unable to grant role for " + empId+e.getMessage(), e);
+        }
+    }
+    public boolean revokeRole(String empId, String roleStr, EmployeeDao dao) {
+    	  empId = empId.trim().toUpperCase();
+        if (!util.validateId(empId)) {
+            throw new ValidationException("Invalid employee ID");
+        }
+        if(!util.validateSingleRole(roleStr)) {
+        	throw new ValidationException("Invalid role");
+        }
+        Roles role = Roles.valueOf(roleStr.trim().toUpperCase()); 
+        try {
+           boolean result = dao.revokeRole(empId, role);
+           if(!result) {
+        	   throw new ServiceException("Failed to grant role"); 
+           }
+           return true;
+        } catch (EmployeeDoesNotExists| DataAccessException e) {
+            throw new ServiceException("Unable to revoke role for "+ empId+e.getMessage(), e);
+        } 
+    }
 }

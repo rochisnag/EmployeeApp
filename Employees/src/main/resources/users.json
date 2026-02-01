@@ -1,9 +1,11 @@
 [
   {
     "name": "Alice John",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Hyderabad",
-    "role": ["ADMIN"],
+    "roles": [
+      "ADMIN"
+    ],
     "dob": "25-10-2001",
     "id": "TEK-1",
     "dept": "Dev",
@@ -11,19 +13,36 @@
   },
   {
     "name": "venkat ram",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Kerala",
-    "role": ["MANAGER"],
+    "roles": [
+      "MANAGER"
+    ],
     "dob": "2-6-1998",
     "id": "TEK-2",
     "dept": "finance",
     "email": "venkat123@gmail.com"
   },
   {
+    "name": "GOPI",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
+    "address": "Hyderabad",
+    "roles": [
+      "ADMIN"
+    ],
+    "dob": "25-10-2001",
+    "id": "TEK-1",
+    "dept": "Dev",
+    "email": "gopi123@tek.ac.in"
+  },
+  {
     "name": "SURYI REDDY",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "GURGAON",
-    "role": ["USER", "MANAGER"],
+    "roles": [
+      "USER",
+      "MANAGER"
+    ],
     "dob": "3-2-2002",
     "id": "TEK-4",
     "dept": "MANGALORE",
@@ -31,9 +50,11 @@
   },
   {
     "name": "Sai Kumar",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Mumbai",
-    "role": ["USER"],
+    "roles": [
+      "USER"
+    ],
     "dob": "2-7-1998",
     "id": "TEK-5",
     "dept": "Support",
@@ -41,9 +62,11 @@
   },
   {
     "name": "Priya Chowdary",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Pune",
-    "role": ["MANAGER"],
+    "roles": [
+      "MANAGER"
+    ],
     "dob": "19-09-1996",
     "id": "TEK-6",
     "dept": "Dev",
@@ -51,9 +74,12 @@
   },
   {
     "name": "Mani Rao",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Mumbai",
-    "role": ["USER", "ADMIN"],
+    "roles": [
+      "USER",
+      "ADMIN"
+    ],
     "dob": "07-07-2001",
     "id": "TEK-7",
     "dept": "QE",
@@ -61,9 +87,12 @@
   },
   {
     "name": "Divya Prasad",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Kolkata",
-    "role": ["USER", "ADMIN"],
+    "roles": [
+      "USER",
+      "ADMIN"
+    ],
     "dob": "28-02-1998",
     "id": "TEK-8",
     "dept": "DevOps",
@@ -71,9 +100,11 @@
   },
   {
     "name": "Vikram Naik",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Hyderabad",
-    "role": ["ADMIN"],
+    "roles": [
+      "ADMIN"
+    ],
     "dob": "14-11-1995",
     "id": "TEK-9",
     "dept": "Dev",
@@ -81,9 +112,11 @@
   },
   {
     "name": "Latha Chandra",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Bangalore",
-    "role": ["MANAGER"],
+    "roles": [
+      "MANAGER"
+    ],
     "dob": "21-05-1997",
     "id": "TEK-11",
     "dept": "QE",
@@ -91,9 +124,12 @@
   },
   {
     "name": "Kiran Rao",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Pune",
-    "role": ["USER", "MANAGER"],
+    "roles": [
+      "USER",
+      "MANAGER"
+    ],
     "dob": "12-03-1999",
     "id": "TEK-12",
     "dept": "DevOps",
@@ -101,42 +137,28 @@
   },
   {
     "name": "Manohar Rao",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
+    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
     "address": "Chennai",
-    "role": ["USER", "ADMIN"],
+    "roles": [
+      "USER",
+      "ADMIN"
+    ],
     "dob": "01-01-1998",
     "id": "TEK-15",
     "dept": "Support",
     "email": "manohar.rao@yahoo.com"
   },
   {
-    "id": "TEK-17",
-    "name": "ashok rao",
-    "dept": "testing",
-    "dob": "2-3-2000",
-    "address": "kerala",
-    "email": "karthik123@gmail.com",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
-    "role": ["ADMIN", "USER"]
-  },
-  {
-    "id": "TEK-18",
-    "name": "karthik  kumar",
-    "dept": "developer",
-    "dob": "2-5-1998",
-    "address": "kerala",
-    "email": "karthik1223@gmail.com",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
-    "role": ["MANAGER", "USER"]
-  },
-  {
-    "id": "TEK-19",
-    "name": "bob smith",
-    "dept": "developer",
-    "dob": "02-03-2004",
-    "address": "Hayathnagar",
-    "email": "smith123@gmail.com",
-    "password": "$2a$10$N9qo8uLOickgx2ZMRZo5i.ejvC0l8KZpC3Kc9xKz2KkY8qJp6K5fC",
-    "role": ["ADMIN"]
+    "id": "TEK-16",
+    "name": "ROHITH KUMAR",
+    "dept": "ANALYST",
+    "dob": "2003-03-05",
+    "address": "NEW DELHII",
+    "email": "ROHITH123@GMAIL.COM",
+    "password": "$2a$10$mL0dBMVvjyY/Es.iyP7ahOC6XLNsbkmLNNEtnm396qWULcfpUYAcm",
+    "roles": [
+      "MANAGER",
+      "USER"
+    ]
   }
 ]

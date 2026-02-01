@@ -1,18 +1,19 @@
 package com.employee.dao;
 import com.employee.model.LoginResult;
 import com.employee.util.Roles;
+import com.employee.model.Employee;
 import java.util.List;
+
 public interface EmployeeDao {
-	void addEmployee(String name, String dept, String DOB, String address, String email, List<Roles> rolesArray,
-			String hashPassword);
-	void updateEmployee(String id, String name, String dept, String DOB, String address, String email,Roles role);
-	void deleteEmployee(String id);
-	void viewAllEmployee();
-	void viewEmployeeById(String id);
-	void changePassword(String id, String oldpass, String password);
-	void resetPassword(String id, String password);
-	void grantRole(String id, String role);
-	void revokeRole(String id, String role);
+	void addEmployee(Employee e) ;
+    boolean updateEmployee(Employee e,Roles role);
+    boolean deleteEmployee(String id);
+	List<Employee> viewAllEmployee();
+	Employee viewEmployeeById(String id);
+    boolean changePassword(String id, String oldpass, String password);
+	boolean resetPassword(String id, String password);
+    boolean grantRole(String id, Roles role) ;
+	boolean revokeRole(String id, Roles role);
 	LoginResult validateUser(String id,String password);
 }
  
