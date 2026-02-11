@@ -11,7 +11,7 @@
     "dept": "Dev",
     "email": "alice123@tek.ac.in",
     "isActive": true,
-	"deletedAt": ""
+    "deletedAt": ""
   },
   {
     "id": "TEK-2",
@@ -34,7 +34,7 @@
     "dob": "2003-11-02",
     "address": "PUNE",
     "email": "ROHTIH123@GMAIL.COM",
-    "password": "$2a$10$41HmcQcLfyty7W/M6m73Fu2fv.2YYpXwPoap6Xdqd5ghIijlt4zC2",
+    "password": "$2a$10$R3xwWqFkEmjoD6Cp.wo6BuJAQtyO38WfUcX2fl3iflsvPSg9U/S6G",
     "isActive": true,
     "deletedAt": "",
     "roles": [

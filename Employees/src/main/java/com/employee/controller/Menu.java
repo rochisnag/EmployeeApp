@@ -6,17 +6,24 @@ import com.employee.model.LoginResult;
 import com.employee.util.Operations;
 import com.employee.util.RolePermission;
 import com.employee.util.Roles;
+import com.employee.model.Session;
 
 public class Menu {
 	public static LoginResult currentUser;
 	public static void displayMenu(EmployeeDao dao) {
 		Scanner sc = new Scanner(System.in);
+		
 		EmployeeController controller = new EmployeeController();
 		RolePermission rolePermission = new RolePermission();
 		LoginController loginController = new LoginController();
+		
 		LoginResult login = loginController.login(dao);
-		currentUser = login;
-		List<Roles> roles = login.getRoles();
+		Session session = new Session(login);
+		List<Roles> roles = session.getRoles();
+		
+		if (login == null || login.getRoles() == null || login.getRoles().isEmpty()) {
+			System.exit(0);
+		}
 		System.out.println("\nEMPLOYEE MANAGEMENT SYSTEM\n");
 		while (true) {
 			System.out.println("AVAILABLE OPERATIONS:");
