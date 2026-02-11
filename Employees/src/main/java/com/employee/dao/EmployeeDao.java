@@ -14,6 +14,6 @@ public interface EmployeeDao {
 	boolean resetPassword(String id, String password);
     boolean grantRole(String id, Roles role) ;
 	boolean revokeRole(String id, Roles role);
+	List<Employee> fetchInActiveEmployees();
 	LoginResult validateUser(String id,String password);
 }
- 

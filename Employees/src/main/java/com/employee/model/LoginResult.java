@@ -5,7 +5,7 @@ import com.employee.util.Roles;
 public class LoginResult {
     private boolean success;
     private String empId;
-    private   List<Roles> roles;
+    private List<Roles> roles;
    public LoginResult(boolean success, String empId, List<Roles> roles) {
         this.success = success;
         this.empId = empId;

@@ -1,0 +1,61 @@
+2026-02-01 22:45:44 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-01 22:45:49 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-01 22:45:52 INFO  com.employee.services.EmployeeService - fetch all employees request recieved
+2026-02-01 22:45:52 INFO  com.employee.services.EmployeeService - fetch all the employees successfully
+2026-02-01 22:46:09 INFO  com.employee.services.EmployeeService - fetch the employee request recieved for id TEK-11 
+2026-02-01 22:46:09 ERROR com.employee.services.EmployeeService - Database error while fetch the employee with id TEK-11 
+com.employee.exceptions.EmployeeDoesNotExists: Employee does not exist with ID: TEK-11
+	at com.employee.dao.EmployeeDbDaoImpl.checkEmpExists(EmployeeDbDaoImpl.java:29)
+	at com.employee.dao.EmployeeDbDaoImpl.viewEmployeeById(EmployeeDbDaoImpl.java:162)
+	at com.employee.services.EmployeeService.getEmployeeById(EmployeeService.java:137)
+	at com.employee.controller.EmployeeController.viewEmployeeById(EmployeeController.java:149)
+	at com.employee.controller.MenuController.displayMenu(MenuController.java:57)
+	at com.employee.main.EmployeeManagement.main(EmployeeManagement.java:32)
+2026-02-01 22:46:51 INFO  com.employee.services.EmployeeService - assign role ADMIN request recieved for id TEK-12 
+2026-02-01 23:03:15 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-01 23:03:19 INFO  com.employee.services.EmployeeService - fetch all employees request recieved
+2026-02-01 23:03:19 INFO  com.employee.services.EmployeeService - fetch all the employees successfully
+2026-02-01 23:03:35 INFO  com.employee.services.EmployeeService - assign role ADMIN request recieved for id TEK-12 
+2026-02-01 23:12:37 INFO  com.employee.services.LoginService - login request recieved for id TEK-2 
+2026-02-01 23:14:06 INFO  com.employee.services.LoginService - login request recieved for id TEK-2 
+2026-02-01 23:14:07 ERROR com.employee.services.LoginService - Database error while login TEK-2 
+com.employee.exceptions.EmployeeDoesNotExists: Employee does not exist with ID: TEK-2
+	at com.employee.dao.EmployeeDbDaoImpl.checkEmpExists(EmployeeDbDaoImpl.java:29)
+	at com.employee.dao.EmployeeDbDaoImpl.validateUser(EmployeeDbDaoImpl.java:266)
+	at com.employee.services.LoginService.validate(LoginService.java:27)
+	at com.employee.controller.LoginController.login(LoginController.java:19)
+	at com.employee.controller.MenuController.displayMenu(MenuController.java:19)
+	at com.employee.main.EmployeeManagement.main(EmployeeManagement.java:32)
+2026-02-01 23:14:15 INFO  com.employee.services.LoginService - login request recieved for id TEK-3 
+2026-02-01 23:14:19 INFO  com.employee.services.EmployeeService - fetch all employees request recieved
+2026-02-01 23:14:19 INFO  com.employee.services.EmployeeService - fetch all the employees successfully
+2026-02-01 23:14:53 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-01 23:15:12 INFO  com.employee.services.EmployeeService - assign role MANAGER request recieved for id TEK-12 
+2026-02-01 23:36:36 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-01 23:36:44 INFO  com.employee.services.EmployeeService - assign role MANAGER request recieved for id TEK-12 
+2026-02-01 23:36:44 WARN  com.employee.services.EmployeeService - duplicate role MANAGER is assigned for id TEK-12 
+2026-02-01 23:37:55 INFO  com.employee.services.EmployeeService - delete employee request recieved for id TEK-11
+2026-02-01 23:49:23 INFO  com.employee.services.EmployeeService - revoke role MANAGER request recieved for id TEK-11 
+2026-02-01 23:50:38 INFO  com.employee.services.EmployeeService - update employee request recieved for id TEK-11 
+2026-02-01 23:50:38 ERROR com.employee.services.EmployeeService - Database error while update the employee for id TEK-11 
+com.employee.exceptions.EmployeeDoesNotExists: Employee does not exist with ID: TEK-11
+	at com.employee.dao.EmployeeDbDaoImpl.checkEmpExists(EmployeeDbDaoImpl.java:31)
+	at com.employee.dao.EmployeeDbDaoImpl.updateEmployee(EmployeeDbDaoImpl.java:103)
+	at com.employee.services.EmployeeService.update(EmployeeService.java:182)
+	at com.employee.controller.EmployeeController.update(EmployeeController.java:235)
+	at com.employee.controller.MenuController.displayMenu(MenuController.java:48)
+	at com.employee.main.EmployeeManagement.main(EmployeeManagement.java:32)
+2026-02-01 23:51:54 INFO  com.employee.services.EmployeeService - add employee request recieved for name RAJU REDDY
+2026-02-01 23:51:54 INFO  com.employee.services.EmployeeService - employee added succesfully with name RAJU REDDY
+2026-02-01 23:51:54 INFO  com.employee.services.EmployeeService - fetch all employees request recieved
+2026-02-01 23:51:54 INFO  com.employee.services.EmployeeService - fetch all the employees successfully
+2026-02-01 23:52:18 INFO  com.employee.services.EmployeeService - delete employee request recieved for id TEK-5
+2026-02-01 23:52:18 INFO  com.employee.services.EmployeeService - fetch all employees request recieved
+2026-02-01 23:52:18 INFO  com.employee.services.EmployeeService - fetch all the employees successfully
+2026-02-01 23:52:36 INFO  com.employee.services.EmployeeService - revoke role USER request recieved for id TEK-12 
+2026-02-01 23:52:36 INFO  com.employee.services.EmployeeService - revoke role USER succesfully to id TEK-12 
+2026-02-01 23:52:36 INFO  com.employee.services.EmployeeService - fetch all employees request recieved
+2026-02-01 23:52:36 INFO  com.employee.services.EmployeeService - fetch all the employees successfully
+2026-02-01 23:53:41 INFO  com.employee.services.LoginService - change password request recieved for id TEK-1 
+2026-02-01 23:53:41 INFO  com.employee.services.LoginService - change password successfully for id TEK-1 
+2026-02-01 23:53:59 INFO  com.employee.services.LoginService - reset password request recieved for id TEK-13 

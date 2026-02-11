@@ -1,7 +1,7 @@
 [
   {
     "name": "Alice John",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
+    "password": "$2a$10$lhEV9G/37JI9imP7KvokPuYsuAIw2CP5lXMcb8erKtERv5BVAlbly",
     "address": "Hyderabad",
     "roles": [
       "ADMIN"
@@ -9,155 +9,35 @@
     "dob": "25-10-2001",
     "id": "TEK-1",
     "dept": "Dev",
-    "email": "alice123@tek.ac.in"
+    "email": "alice123@tek.ac.in",
+    "isActive": true,
+	"deletedAt": ""
   },
   {
-    "name": "venkat ram",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Kerala",
-    "roles": [
-      "MANAGER"
-    ],
-    "dob": "2-6-1998",
     "id": "TEK-2",
-    "dept": "finance",
-    "email": "venkat123@gmail.com"
-  },
-  {
-    "name": "GOPI",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Hyderabad",
-    "roles": [
-      "ADMIN"
-    ],
-    "dob": "25-10-2001",
-    "id": "TEK-1",
-    "dept": "Dev",
-    "email": "gopi123@tek.ac.in"
-  },
-  {
-    "name": "SURYI REDDY",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "GURGAON",
-    "roles": [
-      "USER",
-      "MANAGER"
-    ],
-    "dob": "3-2-2002",
-    "id": "TEK-4",
-    "dept": "MANGALORE",
-    "email": "suryi123@tek.ac.in"
-  },
-  {
-    "name": "Sai Kumar",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Mumbai",
-    "roles": [
-      "USER"
-    ],
-    "dob": "2-7-1998",
-    "id": "TEK-5",
-    "dept": "Support",
-    "email": "sai123@gmail.com"
-  },
-  {
-    "name": "Priya Chowdary",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Pune",
-    "roles": [
-      "MANAGER"
-    ],
-    "dob": "19-09-1996",
-    "id": "TEK-6",
-    "dept": "Dev",
-    "email": "priya.chowdary@tek.ac.in"
-  },
-  {
-    "name": "Mani Rao",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Mumbai",
-    "roles": [
-      "USER",
-      "ADMIN"
-    ],
-    "dob": "07-07-2001",
-    "id": "TEK-7",
-    "dept": "QE",
-    "email": "mani.rao@yahoo.com"
-  },
-  {
-    "name": "Divya Prasad",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Kolkata",
-    "roles": [
-      "USER",
-      "ADMIN"
-    ],
-    "dob": "28-02-1998",
-    "id": "TEK-8",
-    "dept": "DevOps",
-    "email": "divya.prasad@tek.ac.in"
-  },
-  {
-    "name": "Vikram Naik",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Hyderabad",
-    "roles": [
-      "ADMIN"
-    ],
-    "dob": "14-11-1995",
-    "id": "TEK-9",
-    "dept": "Dev",
-    "email": "vikram.naik@gmail.com"
-  },
-  {
-    "name": "Latha Chandra",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Bangalore",
-    "roles": [
-      "MANAGER"
-    ],
-    "dob": "21-05-1997",
-    "id": "TEK-11",
-    "dept": "QE",
-    "email": "latha.chandra@yahoo.com"
-  },
-  {
-    "name": "Kiran Rao",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Pune",
-    "roles": [
-      "USER",
-      "MANAGER"
-    ],
-    "dob": "12-03-1999",
-    "id": "TEK-12",
-    "dept": "DevOps",
-    "email": "kiran.rao@tek.ac.in"
-  },
-  {
-    "name": "Manohar Rao",
-    "password": "$2a$10$3bXiJ7./7W8OSNg8PzbRLenRZ5wRP3sjNJEECaaD5sunmkgJLCDQy",
-    "address": "Chennai",
-    "roles": [
-      "USER",
-      "ADMIN"
-    ],
-    "dob": "01-01-1998",
-    "id": "TEK-15",
-    "dept": "Support",
-    "email": "manohar.rao@yahoo.com"
-  },
-  {
-    "id": "TEK-16",
-    "name": "ROHITH KUMAR",
+    "name": "KARTHIK GOPIREDDY",
     "dept": "ANALYST",
-    "dob": "2003-03-05",
-    "address": "NEW DELHII",
-    "email": "ROHITH123@GMAIL.COM",
-    "password": "$2a$10$mL0dBMVvjyY/Es.iyP7ahOC6XLNsbkmLNNEtnm396qWULcfpUYAcm",
+    "dob": "2002-04-03",
+    "address": "PUNE",
+    "email": "KARTHIK123@GMAIL.COM",
+    "password": "$2a$10$jYhtDF3zH9ZHddsSNR3DoO8y/CxLsnFJPeUtaW1YidvTz.n0V4AHK",
+    "isActive": false,
     "roles": [
-      "MANAGER",
+      "MANAGER"
+    ],
+    "deletedAt": "1770789435310"
+  },
+  {
+    "id": "TEK-3",
+    "name": "ROHTIH KUMAR",
+    "dept": "DATA SCIENTIST",
+    "dob": "2003-11-02",
+    "address": "PUNE",
+    "email": "ROHTIH123@GMAIL.COM",
+    "password": "$2a$10$41HmcQcLfyty7W/M6m73Fu2fv.2YYpXwPoap6Xdqd5ghIijlt4zC2",
+    "isActive": true,
+    "deletedAt": "",
+    "roles": [
       "USER"
     ]
   }

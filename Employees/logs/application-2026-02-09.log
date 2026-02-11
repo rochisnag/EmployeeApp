@@ -1,0 +1,145 @@
+2026-02-09 11:39:53,543 INFO  com.employee.services.LoginService - change password request recieved for id TEK-1 
+2026-02-09 11:39:53,714 WARN  com.employee.services.LoginService - employee not found with id TEK-1 
+2026-02-09 11:39:53,788 INFO  com.employee.services.LoginService - change password request recieved for id TEK-1 
+2026-02-09 11:39:53,865 INFO  com.employee.services.LoginService - change password successfully for id TEK-1 
+2026-02-09 11:39:53,875 INFO  com.employee.services.LoginService - reset password request recieved for id ghc 
+2026-02-09 11:39:53,876 WARN  com.employee.services.LoginService - validation failed: invalid id for ghc
+2026-02-09 11:39:53,885 INFO  com.employee.services.LoginService - change password request recieved for id TEK-1 
+2026-02-09 11:39:53,957 ERROR com.employee.services.LoginService - Database error while change the password for id TEK-1 
+com.employee.exceptions.DataAccessException: DB error
+	at com.employee.services.LoginService.changePassword(LoginService.java:59)
+	at com.employee.services.PasswordOperationsTest.lambda$3(PasswordOperationsTest.java:54)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at com.employee.services.PasswordOperationsTest.changePassword_daoThrowsException_shouldThrowServiceException(PasswordOperationsTest.java:52)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70)
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211)
+2026-02-09 11:39:53,964 INFO  com.employee.services.LoginService - change password request recieved for id bbd 
+2026-02-09 11:39:53,964 WARN  com.employee.services.LoginService - validation failed: invalid id for id bbd
+2026-02-09 11:40:12,928 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-09 11:40:13,503 ERROR com.employee.services.LoginService - Database error while login TEK-1 
+com.employee.exceptions.EmployeeDoesNotExists: Employee does not exist with ID: TEK-1
+	at com.employee.dao.EmployeeDbDaoImpl.checkEmpExists(EmployeeDbDaoImpl.java:27)
+	at com.employee.dao.EmployeeDbDaoImpl.validateUser(EmployeeDbDaoImpl.java:261)
+	at com.employee.services.LoginService.validate(LoginService.java:29)
+	at com.employee.controller.LoginController.login(LoginController.java:19)
+	at com.employee.controller.MenuController.displayMenu(MenuController.java:19)
+	at com.employee.main.EmployeeManagement.main(EmployeeManagement.java:32)
+2026-02-09 12:57:25,830 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-09 12:57:26,151 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6253c26
+2026-02-09 12:57:26,157 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-09 12:58:11,581 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-09 12:58:11,682 ERROR com.employee.services.LoginService - Database error while login TEK-1 
+com.employee.exceptions.EmployeeDoesNotExists: Employee does not exist with ID: TEK-1
+	at com.employee.dao.EmployeeDbDaoImpl.checkEmpExists(EmployeeDbDaoImpl.java:25)
+	at com.employee.dao.EmployeeDbDaoImpl.validateUser(EmployeeDbDaoImpl.java:259)
+	at com.employee.services.LoginService.validate(LoginService.java:29)
+	at com.employee.controller.LoginController.login(LoginController.java:19)
+	at com.employee.controller.Menu.displayMenu(Menu.java:20)
+	at com.employee.main.EmployeeManagement.main(EmployeeManagement.java:41)
+2026-02-09 13:02:18,269 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-09 13:02:18,575 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54a7079e
+2026-02-09 13:02:18,576 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-09 13:02:23,829 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-09 13:02:23,921 ERROR com.employee.services.LoginService - Database error while login TEK-1 
+com.employee.exceptions.EmployeeDoesNotExists: Employee does not exist with ID: TEK-1
+	at com.employee.dao.EmployeeDbDaoImpl.checkEmpExists(EmployeeDbDaoImpl.java:25)
+	at com.employee.dao.EmployeeDbDaoImpl.validateUser(EmployeeDbDaoImpl.java:259)
+	at com.employee.services.LoginService.validate(LoginService.java:29)
+	at com.employee.controller.LoginController.login(LoginController.java:19)
+	at com.employee.controller.Menu.displayMenu(Menu.java:20)
+	at com.employee.main.EmployeeManagement.main(EmployeeManagement.java:41)
+2026-02-09 13:04:49,753 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-09 13:04:50,085 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@82de64a
+2026-02-09 13:04:50,088 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-09 13:04:54,374 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-09 13:04:54,470 ERROR com.employee.services.LoginService - Database error while login TEK-1 
+com.employee.exceptions.EmployeeDoesNotExists: Employee does not exist with ID: TEK-1
+	at com.employee.dao.EmployeeDbDaoImpl.checkEmpExists(EmployeeDbDaoImpl.java:25)
+	at com.employee.dao.EmployeeDbDaoImpl.validateUser(EmployeeDbDaoImpl.java:259)
+	at com.employee.services.LoginService.validate(LoginService.java:29)
+	at com.employee.controller.LoginController.login(LoginController.java:19)
+	at com.employee.controller.Menu.displayMenu(Menu.java:20)
+	at com.employee.main.EmployeeManagement.main(EmployeeManagement.java:41)
+2026-02-09 13:15:45,924 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m19s434ms546µs200ns).
+2026-02-09 14:24:32,166 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h7m46s221ms256µs300ns).
+2026-02-09 14:38:07,684 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m5s436ms348µs500ns).
+2026-02-09 14:51:17,695 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m9s873ms335µs600ns).
+2026-02-09 15:20:07,666 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-09 15:20:08,111 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4659191b
+2026-02-09 15:20:08,114 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-09 15:20:12,579 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-09 15:20:12,682 ERROR com.employee.services.LoginService - Database error while login TEK-1 
+2026-02-09 16:33:03,739 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m54s357ms807µs200ns).
+2026-02-09 17:33:07,039 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=31m32s849ms188µs100ns).
+2026-02-09 18:02:48,259 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-09 18:02:49,772 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@30c8681
+2026-02-09 18:02:49,775 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-09 18:04:02,977 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 

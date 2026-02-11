@@ -1,0 +1,16 @@
+2026-02-10 11:38:14,812 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-10 11:38:15,569 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@201a4587
+2026-02-10 11:38:15,572 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-10 11:38:29,265 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-10 11:41:23,925 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-10 11:41:24,342 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54a7079e
+2026-02-10 11:41:24,356 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-10 11:41:33,942 INFO  com.employee.services.LoginService - login request recieved for id TEK-2 
+2026-02-10 11:41:34,057 ERROR com.employee.services.LoginService - Database error while login TEK-2 
+2026-02-10 11:43:32,677 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-10 11:43:33,117 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54a7079e
+2026-02-10 11:43:33,119 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-10 11:43:48,373 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-10 11:43:48,375 WARN  com.employee.services.LoginService - validation failed: invalid password for TEK-1
+2026-02-10 11:43:58,277 INFO  com.employee.services.LoginService - login request recieved for id TEK-2 
+2026-02-10 11:43:58,395 ERROR com.employee.services.LoginService - Database error while login TEK-2 

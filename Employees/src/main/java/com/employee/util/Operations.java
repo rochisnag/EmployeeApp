@@ -10,5 +10,7 @@ public enum Operations {
 	CHANGEPASSWORD,
 	GRANT,
 	REVOKE,
+	FETCH_INACTIVE_EMPLOYEES,
+	LOGOUT,
 	EXIT
 }

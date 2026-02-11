@@ -17,23 +17,21 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
 
 public class EmployeeFileDaoImpl implements EmployeeDao {
     public static final File file = new File("src/main/resources/users.json");
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final ServerSideValidations se = new ServerSideValidations();
-    private final EmployeeUtil util = new EmployeeUtil();
-    private JsonArray getDataFromFile() {
+    
+      private JsonArray getDataFromFile() {
         try (FileReader reader = new FileReader(file)) {
             if (!file.exists() || file.length() == 0) {
                 System.out.println("File is empty or doesn't exist.");
                 return new JsonArray();
             }
             JsonArray data = JsonParser.parseReader(reader).getAsJsonArray();
-                 return data;
+            return data;
         } catch (IOException | JsonParseException e) {
             throw new DataAccessException("Error accessing employees file", e);
         }
@@ -46,14 +44,17 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
             throw new DataAccessException("Unable to save employees file", e);
         }
     }
-    private void checkEmpExists(String id) {
-        for (JsonElement el : getDataFromFile()) {
-            if (el.getAsJsonObject().get("id").getAsString().equalsIgnoreCase(id)) {
+    
+    private void checkActiveEmployee(String id) {
+        for (JsonElement e : getDataFromFile()) {
+        	 JsonObject employee = e.getAsJsonObject();
+            if (employee.getAsJsonObject().get("id").getAsString().equalsIgnoreCase(id) && employee.get("isActive").getAsBoolean()) {
                 return;
             }
         }
         throw new EmployeeDoesNotExists("Employee does not exist with ID: " + id);
     }
+   
     public void addEmployee(Employee emp) {
         JsonArray employees = getDataFromFile();
         JsonObject o = new JsonObject();
@@ -64,6 +65,8 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
         o.addProperty("address", emp.getAddress());
         o.addProperty("email", emp.getEmail());
         o.addProperty("password", emp.getPassword());
+    	o.addProperty("isActive", true);
+		o.addProperty("deletedAt", "");
         JsonArray rolesArray = new JsonArray();
         if (emp.getRoles() != null) {
             for (Roles r : emp.getRoles()) {
@@ -75,7 +78,7 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
         saveToFile(employees);
     }
     public boolean updateEmployee(Employee emp, Roles role) {
-        checkEmpExists(emp.getId());
+        checkActiveEmployee(emp.getId());
         JsonArray employees = getDataFromFile();
         for (JsonElement el : employees) {
             JsonObject obj = el.getAsJsonObject();
@@ -83,7 +86,6 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
                 obj.addProperty("dob", emp.getDob());
                 obj.addProperty("address", emp.getAddress());
                 obj.addProperty("email", emp.getEmail());
-
                 if (!role.equals(Roles.USER)) {
                     obj.addProperty("name", emp.getName());
                     obj.addProperty("dept", emp.getDept());
@@ -94,23 +96,26 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
         saveToFile(employees);
         return true;
     }
+    
     public boolean deleteEmployee(String id) {
-        checkEmpExists(id);
+        checkActiveEmployee(id);
         JsonArray employees = getDataFromFile();
-        Iterator<JsonElement> it = employees.iterator();
-        while (it.hasNext()) {
-            if (it.next().getAsJsonObject().get("id").getAsString().equalsIgnoreCase(id)) {
-                it.remove();
-                saveToFile(employees);
-                return true;
-            }
+        for (JsonElement el : employees) {
+        JsonObject obj = el.getAsJsonObject();
+        if (obj.get("id").getAsString().equalsIgnoreCase(id)) {
+            obj.addProperty("isActive", false); 
+            obj.addProperty("deletedAt", String.valueOf(System.currentTimeMillis())); 
+            saveToFile(employees);
+            return true; 
         }
-        return false;
+    }
+    return false;
     }
     public List<Employee> viewAllEmployee() {
         List<Employee> list = new ArrayList<>();
         for (JsonElement el : getDataFromFile()) {
             JsonObject o = el.getAsJsonObject();
+            if (o.get("isActive").getAsBoolean()) {  
             list.add(new Employee(
                     o.get("id").getAsString(),
                     o.get("name").getAsString(),
@@ -120,10 +125,11 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
                     o.get("email").getAsString()
             ));
         }
+        }
         return list;
     }
     public Employee viewEmployeeById(String id) {
-        checkEmpExists(id);
+        checkActiveEmployee(id);
         for (JsonElement el : getDataFromFile()) {
             JsonObject o = el.getAsJsonObject();
             if (o.get("id").getAsString().equalsIgnoreCase(id)) {
@@ -140,15 +146,15 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
         return null;
     }
     public boolean changePassword(String id, String oldPass, String newPass) {
-        checkEmpExists(id);
+        checkActiveEmployee(id);
         JsonArray employees = getDataFromFile();
         for (JsonElement el : employees) {
             JsonObject o = el.getAsJsonObject();
             if (o.get("id").getAsString().equalsIgnoreCase(id)) {
-                if (!util.verify(oldPass, o.get("password").getAsString())) {
+                if (!EmployeeUtil.verify(oldPass, o.get("password").getAsString())) {
                     throw new DataAccessException("Old password incorrect");
                 }
-                o.addProperty("password", util.hash(newPass));
+                o.addProperty("password", EmployeeUtil.hash(newPass));
                 saveToFile(employees);
                 return true;
             }
@@ -156,7 +162,7 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
         return false;
     }
     public boolean resetPassword(String id, String password) {
-        checkEmpExists(id);
+        checkActiveEmployee(id);
         JsonArray employees = getDataFromFile();
         for (JsonElement el : employees) {
             JsonObject o = el.getAsJsonObject();
@@ -169,7 +175,7 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
         return false;
     }
     public boolean grantRole(String id, Roles role) {
-        checkEmpExists(id);
+        checkActiveEmployee(id);
         JsonArray employees = getDataFromFile();
         for (JsonElement el : employees) {
             JsonObject o = el.getAsJsonObject();
@@ -192,7 +198,7 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
         return false;
     }
     public boolean revokeRole(String id, Roles role) {
-        checkEmpExists(id);
+        checkActiveEmployee(id);
         JsonArray employees = getDataFromFile();
         for (JsonElement el : employees) {
             JsonObject o = el.getAsJsonObject();
@@ -217,12 +223,30 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
         }
         return false;
     }
+    public List<Employee> fetchInActiveEmployee(){
+    	 List<Employee> employees = new ArrayList<>();
+         for (JsonElement el : getDataFromFile()) {
+             JsonObject o = el.getAsJsonObject();
+             if (!o.get("isActive").getAsBoolean()) {  
+                 employees.add(new Employee(
+                         o.get("id").getAsString(),
+                         o.get("name").getAsString(),
+                         o.get("dept").getAsString(),
+                         o.get("dob").getAsString(),
+                         o.get("address").getAsString(),
+                         o.get("email").getAsString()
+                 ));
+             }
+         }
+         return employees;
+    }
     public LoginResult validateUser(String id, String password) {
+    	checkActiveEmployee(id);
         for (JsonElement el : getDataFromFile()) {
             JsonObject o = el.getAsJsonObject();
             String Id = o.get("id").getAsString();
             if (Id.equalsIgnoreCase(id)) {
-                if (!util.verify(password, o.get("password").getAsString())) {
+                if (!EmployeeUtil.verify(password, o.get("password").getAsString())) {
                     System.out.println("Password mismatch.");
                     return new LoginResult(false, null, null);
                 }    
@@ -238,7 +262,25 @@ public class EmployeeFileDaoImpl implements EmployeeDao {
                 return new LoginResult(true, id, roles);
             }
         }
-        throw new EmployeeDoesNotExists("Employee not found with ID: " + id);
+		return null;
     }
 
+	@Override
+	public List<Employee> fetchInActiveEmployees() {
+		 List<Employee> employees = new ArrayList<>();
+	        for (JsonElement el : getDataFromFile()) {
+	            JsonObject o = el.getAsJsonObject();
+	            if (!o.get("isActive").getAsBoolean()) {  
+	                employees.add(new Employee(
+	                        o.get("id").getAsString(),
+	                        o.get("name").getAsString(),
+	                        o.get("dept").getAsString(),
+	                        o.get("dob").getAsString(),
+	                        o.get("address").getAsString(),
+	                        o.get("email").getAsString()
+	                ));
+	            }
+	        }
+	        return employees;
+	}
 }

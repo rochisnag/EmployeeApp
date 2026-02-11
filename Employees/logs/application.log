@@ -1,0 +1,23 @@
+2026-02-02 00:11:10 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-02 00:11:17 INFO  com.employee.services.LoginService - reset password request recieved for id TEK-12 
+2026-02-02 00:14:08 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-02 00:14:22 INFO  com.employee.services.LoginService - reset password request recieved for id TEK-12 
+2026-02-02 00:16:24 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-02 00:16:51 INFO  com.employee.services.LoginService - reset password request recieved for id TEK-12 
+2026-02-02 00:16:52 INFO  com.employee.services.LoginService - reset password successfully for id TEK-12 
+2026-02-02 00:17:11 INFO  com.employee.services.LoginService - login request recieved for id TEK-12 
+2026-02-02 00:17:21 INFO  com.employee.services.LoginService - login request recieved for id TEK-12 
+2026-02-02 10:13:39 INFO  com.employee.services.LoginService - login request recieved for id TEK-12 
+2026-02-02 10:13:51 INFO  com.employee.services.LoginService - login request recieved for id TEK-12 
+2026-02-02 10:14:07 INFO  com.employee.services.EmployeeService - fetch all employees request recieved
+2026-02-02 10:14:07 INFO  com.employee.services.EmployeeService - fetch all the employees successfully
+2026-02-02 10:45:51 INFO  com.employee.services.LoginService - login request recieved for id TEK-1 
+2026-02-02 10:46:09 INFO  com.employee.services.LoginService - login request recieved for id TEK-12 
+2026-02-02 10:47:02 INFO  com.employee.services.LoginService - change password request recieved for id TEK-12 
+2026-02-02 10:47:02 ERROR com.employee.services.LoginService - Database error while change the password for id TEK-12 
+com.employee.exceptions.DataAccessException: Old password incorrect
+	at com.employee.dao.EmployeeDbDaoImpl.changePassword(EmployeeDbDaoImpl.java:202)
+	at com.employee.services.LoginService.changePassword(LoginService.java:59)
+	at com.employee.controller.EmployeeController.changePassword(EmployeeController.java:171)
+	at com.employee.controller.MenuController.displayMenu(MenuController.java:63)
+	at com.employee.main.EmployeeManagement.main(EmployeeManagement.java:32)

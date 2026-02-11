@@ -17,18 +17,23 @@ public class RolePermission {
 				Operations.RESETPASSWORD,
 				Operations.GRANT,
 				Operations.REVOKE,
+				Operations.FETCH_INACTIVE_EMPLOYEES,
+				Operations.LOGOUT,
 				Operations.EXIT
 				));
 		map.put(Roles.MANAGER, EnumSet.of(
 				Operations.FETCH,
 				Operations.FETCH_EMPLOYEE_BY_ID,
+				Operations.CHANGEPASSWORD,
 				Operations.UPDATE,
+				Operations.LOGOUT,
 				Operations.EXIT
 				));
 		map.put(Roles.USER, EnumSet.of(
 				Operations.FETCH_EMPLOYEE_BY_ID,
 				Operations.UPDATE,
 				Operations.CHANGEPASSWORD,
+				Operations.LOGOUT,
 				Operations.EXIT
 				));
 	}

@@ -1,5 +1,5 @@
 package com.employee.util;
 
 public enum StorageTypes {
-FILE,POSTGRESQL
+FILE,DATABASE,SUPABASE
 }
